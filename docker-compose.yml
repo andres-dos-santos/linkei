@@ -3,6 +3,7 @@ services:
     image: postgres
     restart: always
     shm_size: 128mb
+    container_name: encurtai
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
