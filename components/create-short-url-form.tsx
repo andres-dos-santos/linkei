@@ -29,6 +29,8 @@ export function CreateShortUrlForm() {
 
       if (data) {
         toast('Seu link foi encurtado!')
+      } else {
+        toast('Houve algum erro ao criar seu link.')
       }
 
       if (qrCode === 'on') {
