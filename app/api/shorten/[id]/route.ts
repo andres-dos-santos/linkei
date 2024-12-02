@@ -1,10 +1,10 @@
-import { NextApiRequest } from 'next'
 import { redirect } from 'next/navigation'
 
 import { db } from '@/lib/db'
+import { NextRequest } from 'next/server'
 
 export async function GET(
-  req: NextApiRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   return http.GET(req, { params })
@@ -12,7 +12,7 @@ export async function GET(
 
 const http = {
   GET: async (
-    _: NextApiRequest,
+    _: NextRequest,
     { params }: { params: Promise<{ id: string }> },
   ) => {
     const id = (await params).id
