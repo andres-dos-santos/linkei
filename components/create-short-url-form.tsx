@@ -21,8 +21,8 @@ export function CreateShortUrlForm() {
   const [url, setUrl] = useState<string | null>(null)
 
   async function submit(formData: FormData) {
-    const qrCode = formData.get('qr-code')
     const url = formData.get('url')
+    const qrCode = formData.get('qr-code')
 
     if (url) {
       const data = await onCreateUrl(url.toString())
@@ -40,31 +40,33 @@ export function CreateShortUrlForm() {
   }
 
   return (
-    <form action={submit} className="flex flex-col gap-3">
-      <Input name="url">
-        <InputLabel>Seu link</InputLabel>
-      </Input>
+    <>
+      <form action={submit} className="flex flex-col gap-3">
+        <Input name="url">
+          <InputLabel>Seu link</InputLabel>
+        </Input>
 
-      <Input name="description">
+        {/* <Input name="description">
         <InputLabel>Uma descrição</InputLabel>
-      </Input>
+      </Input> */}
 
-      <footer className="flex items-center justify-between">
-        <div className="flex items-center gap-x-2">
-          <Checkbox name="qr-code" />
-          <p className="text-[13px]">Gerar QRCode também</p>
-        </div>
+        <footer className="flex items-center justify-between">
+          <div className="flex items-center gap-x-2">
+            <Checkbox name="qr-code" />
+            <p className="text-[13px]">Gerar QRCode também</p>
+          </div>
 
-        <button
-          type="submit"
-          className="flex items-center w-52 justify-center h-10 bg-zinc-900 dark:bg-white rounded-[2px] hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-200"
-        >
-          <ArrowRight className="text-secondary dark:text-primary size-4" />{' '}
-          <p className="text-[13px] font-medium text-secondary dark:text-primary">
-            Encurte isso
-          </p>
-        </button>
-      </footer>
+          <button
+            type="submit"
+            className="flex items-center w-52 justify-center h-10 bg-zinc-900 dark:bg-white rounded-[2px] hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-200"
+          >
+            <ArrowRight className="text-secondary dark:text-primary size-4" />{' '}
+            <p className="text-[13px] font-medium text-secondary dark:text-primary">
+              Encurte isso
+            </p>
+          </button>
+        </footer>
+      </form>
 
       <Dialog open={!!url} onOpenChange={() => setUrl(null)}>
         <DialogContent>
@@ -96,6 +98,6 @@ export function CreateShortUrlForm() {
           </div>
         </DialogContent>
       </Dialog>
-    </form>
+    </>
   )
 }
