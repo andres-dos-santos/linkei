@@ -1,101 +1,119 @@
-import Image from "next/image";
+import { api } from '@/lib/api'
 
-export default function Home() {
+import type { Url } from '@prisma/client'
+
+import { Urls } from '@/components/urls'
+import { CreateShortUrlForm } from '@/components/create-short-url-form'
+import { Logo } from '@/components/logo'
+import { LinkSvg } from '@/components/svg/link.svg'
+import { FreeSvg } from '@/components/svg/free.svg'
+import { SecureSvg } from '@/components/svg/secure.svg'
+import { QRCodeSvg } from '@/components/svg/qr-code.svg'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+async function getUrls(): Promise<Url[]> {
+  const response = await api('shorten')
+
+  if (response.ok) {
+    const data = await response.json()
+
+    return data
+  }
+
+  return []
+}
+
+export default async function _page() {
+  const urls = await getUrls()
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="mx-auto grid grid-cols-2 max-w-[1120px]">
+      <div className="pr-14 flex flex-col min-h-screen justify-between pb-5">
+        <header className="flex flex-col items-start gap-2.5 mt-20 mb-10">
+          <div className="flex items-center gap-2.5">
+            <div className="flex items-center justify-center rounded-[2px] h-[56px] w-[56px] bg-zinc-900">
+              <Logo />
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="flex flex-col">
+              <p className="-tracking-wider font-semibold">
+                Encurt-<span className="text-zinc-500">AI</span>
+              </p>
+
+              <p className="text-[13px] text-zinc-500">
+                Encurte seus URLs longos e compartilhe-os facilmente.
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <CreateShortUrlForm />
+
+        <div className="flex flex-col mt-auto">
+          <div className="mt-auto grid grid-cols-2 gap-2.5 mb-2.5">
+            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
+              <div className="flex items-center gap-2.5">
+                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
+                  <LinkSvg />
+                </div>
+                <p className="text-sm font-medium">Curto</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-4">
+                Encurte links de qualquer tamanho com o Encurtador
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
+              <div className="flex items-center gap-2.5">
+                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
+                  <FreeSvg />
+                </div>
+                <p className="text-sm font-medium">Grátis</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-4">
+                Crie quantos links encurtados quiser e compartilhe
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
+              <div className="flex items-center gap-2.5">
+                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
+                  <SecureSvg />
+                </div>
+                <p className="text-sm font-medium">Seguro</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-4">
+                Usamos protocolo https com criptografia de dados nas URLs
+              </p>
+            </div>
+
+            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
+              <div className="flex items-center gap-2.5">
+                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
+                  <QRCodeSvg />
+                </div>
+                <p className="text-sm font-medium">QR Code</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-4">
+                Gere sua URL e disponibilize através de QRCode.
+              </p>
+            </div>
+          </div>
+
+          <hr className="my-10" />
+
+          <div className="flex items-center gap-2.5 mb-5">
+            <Avatar>
+              <AvatarImage src="https://github.com/andres-dos-santos.png" />
+              <AvatarFallback>AN</AvatarFallback>
+            </Avatar>
+
+            <p className="text-[13px]">Andres doSantos</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <Urls urls={urls} />
     </div>
-  );
+  )
 }
