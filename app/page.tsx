@@ -9,7 +9,7 @@ import { LinkSvg } from '@/components/svg/link.svg'
 import { FreeSvg } from '@/components/svg/free.svg'
 import { SecureSvg } from '@/components/svg/secure.svg'
 import { QRCodeSvg } from '@/components/svg/qr-code.svg'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Profile } from '@/components/profile'
 
 async function getUrls(): Promise<Url[]> {
   const response = await api('shorten')
@@ -94,14 +94,7 @@ export default async function _page() {
 
           <hr className="my-10" />
 
-          <div className="flex items-center gap-2.5 mb-5">
-            <Avatar>
-              <AvatarImage src="https://github.com/andres-dos-santos.png" />
-              <AvatarFallback>AN</AvatarFallback>
-            </Avatar>
-
-            <p className="text-[13px]">Andres doSantos</p>
-          </div>
+          <Profile />
         </div>
       </div>
 
