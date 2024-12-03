@@ -14,18 +14,17 @@ export function OpenUrl({ id, shortUrl }: Props) {
 
     if (response.ok) {
       const data = (await response.json()) as Url
-      console.log('data', data)
 
-      // window.open(data.originalUrl, '__blank')
+      window.open(data.originalUrl, '__blank')
     }
   }
 
   return (
     <button
       onClick={() => handleOpenUrl(id)}
-      className="underline text-blue-500"
+      className="underline text-zinc-700 hover:text-zinc-900"
     >
-      <p className="text-[15px]">{shortUrl}</p>
+      <p className="text-[13px] font-medium">{shortUrl}</p>
     </button>
   )
 }

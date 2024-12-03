@@ -1,7 +1,5 @@
-import { redirect } from 'next/navigation'
-
 import { db } from '@/lib/db'
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   req: NextRequest,
@@ -28,7 +26,7 @@ const http = {
           data: { visits: url.visits + 1 },
         })
 
-        redirect(updatedUrl.originalUrl)
+        return NextResponse.json({ originalUrl: updatedUrl.originalUrl })
       }
     }
   },
