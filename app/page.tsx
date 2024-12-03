@@ -31,7 +31,7 @@ export default async function _page() {
       <div className="pr-14 flex flex-col min-h-screen justify-between pb-5">
         <header className="flex flex-col items-start gap-2.5 mt-20 mb-10">
           <div className="flex items-center gap-2.5">
-            <div className="flex items-center justify-center rounded-[2px] h-[56px] w-[56px] bg-zinc-900">
+            <div className="flex items-center justify-center h-[52px] w-[52px] rounded-2xl bg-zinc-900">
               <Logo />
             </div>
 

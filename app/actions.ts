@@ -1,6 +1,7 @@
 'use server'
 
 import { api } from '@/lib/api'
+import { revalidatePath } from 'next/cache'
 
 export async function onCreateUrl(url: string) {
   if (url) {
@@ -14,6 +15,8 @@ export async function onCreateUrl(url: string) {
 
     if (response.ok) {
       const data = await response.json()
+
+      revalidatePath('/')
 
       return data
     }

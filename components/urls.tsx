@@ -1,7 +1,7 @@
 import { Url } from '@prisma/client'
-import { Copy } from 'lucide-react'
 
 import { OpenUrl } from './open-url'
+import { ClipToClipboard } from './copy-to-clipboard'
 
 export function Urls({ urls }: { urls: Url[] }) {
   return (
@@ -21,8 +21,10 @@ export function Urls({ urls }: { urls: Url[] }) {
               <OpenUrl id={item.id} shortUrl={item.shortUrl} />
 
               <div className="flex items-center gap-2.5">
-                <Copy className="size-4 text-zinc-500" />
-                <p className="text-sm text-zinc-500">{item.visits} views</p>
+                <ClipToClipboard originalUrl={item.originalUrl} />
+                <p className="text-[13px] font-medium text-zinc-500 -tracking-wider">
+                  <span className="text-sm">{item.visits}</span> views
+                </p>
               </div>
             </li>
           ))}

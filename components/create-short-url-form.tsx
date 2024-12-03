@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Loader } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { onCreateUrl } from '@/app/actions'
@@ -19,8 +19,11 @@ import { Input, InputLabel } from './ui/input'
 
 export function CreateShortUrlForm() {
   const [url, setUrl] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   async function submit(formData: FormData) {
+    setLoading(true)
+
     const url = formData.get('url')
     const qrCode = formData.get('qr-code')
 
@@ -39,12 +42,14 @@ export function CreateShortUrlForm() {
     } else {
       toast('Você passou a URL?')
     }
+
+    setLoading(false)
   }
 
   return (
     <>
       <form action={submit} className="flex flex-col gap-3">
-        <Input name="url">
+        <Input name="url" placeholder="Digite aqui seu link">
           <InputLabel>Seu link</InputLabel>
         </Input>
 
@@ -60,12 +65,23 @@ export function CreateShortUrlForm() {
 
           <button
             type="submit"
-            className="flex items-center w-52 justify-center h-10 bg-zinc-900 dark:bg-white rounded-[2px] hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-200"
+            className="flex items-center w-52 justify-center h-10 border-2 group border-zinc-900 hover:bg-white bg-zinc-900 dark:bg-white rounded-[2px] dark:hover:bg-zinc-100 transition-all duration-200"
           >
-            <ArrowRight className="text-secondary dark:text-primary size-4" />{' '}
-            <p className="text-[13px] font-medium text-secondary dark:text-primary">
-              Encurte isso
-            </p>
+            {loading ? (
+              <>
+                <Loader className="mr-0.5 animate-spin text-secondary dark:text-primary size-4 group-hover:text-zinc-900" />{' '}
+                <p className="text-[13px] font-medium text-secondary -tracking-wider dark:text-primary group-hover:text-zinc-900">
+                  Carregando...
+                </p>
+              </>
+            ) : (
+              <>
+                <ArrowRight className="text-secondary dark:text-primary size-4 group-hover:text-zinc-900" />{' '}
+                <p className="text-[13px] font-medium text-secondary -tracking-wider dark:text-primary group-hover:text-zinc-900">
+                  Encurte isso
+                </p>
+              </>
+            )}
           </button>
         </footer>
       </form>
