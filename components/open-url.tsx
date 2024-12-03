@@ -2,6 +2,7 @@
 
 import { api } from '@/lib/api'
 import { Url } from '@prisma/client'
+import { revalidatePath } from 'next/cache'
 
 type Props = {
   id: string
@@ -16,6 +17,8 @@ export function OpenUrl({ id, shortUrl }: Props) {
       const data = (await response.json()) as Url
 
       window.open(data.originalUrl, '__blank')
+
+      revalidatePath('/')
     }
   }
 

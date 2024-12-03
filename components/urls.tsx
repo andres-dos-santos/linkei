@@ -7,7 +7,7 @@ export function Urls({ urls }: { urls: Url[] }) {
   return (
     <ul className="px-10 min-h-screen border-l">
       <li className="mb-5 flex gap-1 items-baseline mt-[84px]">
-        <p className=" font-medium -tracking-wide">Historic</p>
+        <p className=" font-medium -tracking-wide">Seu histórico</p>
         <p className="text-[13px]">{urls.length}</p>
       </li>
 

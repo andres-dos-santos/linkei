@@ -30,20 +30,12 @@ export default async function _page() {
     <div className="mx-auto grid grid-cols-2 max-w-[1120px]">
       <div className="pr-14 flex flex-col min-h-screen justify-between pb-5">
         <header className="flex flex-col items-start gap-2.5 mt-20 mb-10">
-          <div className="flex items-center gap-2.5">
-            <div className="flex items-center justify-center h-[52px] w-[52px] rounded-2xl bg-zinc-900">
-              <Logo />
-            </div>
+          <div className="flex flex-col items-start gap-2.5">
+            <Logo />
 
-            <div className="flex flex-col">
-              <p className="-tracking-wider font-semibold">
-                Encurt-<span className="text-zinc-500">AI</span>
-              </p>
-
-              <p className="text-[13px] text-zinc-500">
-                Encurte seus URLs longos e compartilhe-os facilmente.
-              </p>
-            </div>
+            <p className="-tracking-wide text-[13px] text-zinc-600 font-medium">
+              Encurte seus URLs longos e compartilhe-os facilmente.
+            </p>
           </div>
         </header>
 
