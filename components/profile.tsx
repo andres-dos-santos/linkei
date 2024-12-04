@@ -1,43 +1,35 @@
 'use client'
 
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-
 import { SignInButton, SignOutButton, useSession } from '@clerk/nextjs'
 
 export function Profile() {
   const { session, isSignedIn } = useSession()
 
-  return (
-    <div className="flex items-center justify-between mb-5">
-      <SignInButton>
-        <button className="flex items-center gap-2.5">
-          <Avatar>
-            <AvatarImage src={session?.user.imageUrl} />
-            <AvatarFallback>
-              {session?.user.fullName?.slice(0, 2)}
-            </AvatarFallback>
-          </Avatar>
-
-          {!isSignedIn ? (
-            <p className="text-[13px] text-zinc-500 -tracking-wide">
-              Acesse os melhores recursos do app,{' '}
-              <span className="text-zinc-900 p-1 bg-yellow-300">
-                entre aqui
-              </span>
-            </p>
-          ) : (
-            <p className="text-sm -tracking-wide">{session?.user.fullName}</p>
-          )}
-        </button>
-      </SignInButton>
-
-      {isSignedIn && (
-        <SignOutButton>
-          <button>
-            <p className="text-[13px] text-red-500">Sair</p>
-          </button>
-        </SignOutButton>
-      )}
-    </div>
+  return !isSignedIn ? (
+    <SignInButton>
+      <div className="ml-3 mt-4 mb-2.5 flex items-center">
+        <p className="cursor-pointer text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 dark:text-zinc-300">
+          Ainda não tem conta?{' '}
+          <span className="text-blue-500 underline">Clique aqui</span>.
+        </p>
+      </div>
+    </SignInButton>
+  ) : (
+    <SignOutButton>
+      <div className="mr-auto ml-3 mt-4 mb-2.5 flex items-center">
+        <div className="h-8 w-8 bg-zinc-200 rounded-lg mr-2.5">
+          <img
+            alt="imagem de perfil"
+            src={session.user.imageUrl}
+            width={32}
+            height={32}
+            className="rounded-lg"
+          />
+        </div>
+        <p className="cursor-pointer text-[13px] font-medium text-zinc-600 -tracking-wide dark:text-zinc-300">
+          {session.user.fullName}
+        </p>
+      </div>
+    </SignOutButton>
   )
 }

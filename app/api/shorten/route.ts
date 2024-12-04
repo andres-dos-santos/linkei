@@ -1,31 +1,55 @@
-import { nanoid } from 'nanoid'
-import { NextResponse } from 'next/server'
+import { MongoClient } from 'mongodb'
 
-import { db } from '@/lib/db'
-
-export async function POST(req: Request) {
-  return http.POST(req)
+export async function POST() {
+  return http.POST()
 }
 
 export async function GET() {
-  return http.GET()
+  // return http.GET()
 }
 
 const http = {
-  POST: async (req: Request) => {
-    const { url } = await req.json()
+  POST: async () => {
+    // const { url } = await req.json()
 
-    const shortUrl = nanoid(8)
+    const client = new MongoClient(
+      process.env.NEXT_PUBLIC_MONGODB_URI ?? '',
+      {},
+    )
 
-    const shortnedUrl = await db.url.create({
-      data: { originalUrl: url, shortUrl: 'https://us/' + shortUrl },
-    })
+    try {
+      await client.connect()
 
-    return NextResponse.json({ shortUrl: shortnedUrl.shortUrl })
+      const database = client.db('test')
+
+      const collection = database.collection('urls')
+      const allData = await collection.find({}).toArray()
+
+      console.log(allData)
+    } catch (error) {
+      console.log(error)
+      // res.status(500).json({ message: 'Something went wrong!' })
+    } finally {
+      await client.close()
+    }
+
+    return {}
+
+    // const shortUrl = nanoid(8)
+
+    // const shortnedUrl = await Url.create({
+    //   data: {
+    //     originalUrl: url,
+    //     shortUrl: 'https://us/' + shortUrl,
+    //     userId: 's',
+    //   },
+    // })
+
+    // return NextResponse.json({ shortUrl: shortnedUrl.shortUrl })
   },
-  GET: async () => {
-    const urls = await db.url.findMany({ orderBy: { createdAt: 'desc' } })
+  // GET: async () => {
+  //   const urls = await db.url.findMany({ orderBy: { createdAt: 'desc' } })
 
-    return NextResponse.json(urls)
-  },
+  //   return NextResponse.json(urls)
+  // },
 }
