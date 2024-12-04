@@ -1,111 +1,101 @@
-import { api } from '@/lib/api'
-
-import type { Url } from '@prisma/client'
-
-import { Urls } from '@/components/urls'
-import { CreateShortUrlForm } from '@/components/create-short-url-form'
 import { Logo } from '@/components/logo'
-import { LinkSvg } from '@/components/svg/link.svg'
-import { FreeSvg } from '@/components/svg/free.svg'
-import { SecureSvg } from '@/components/svg/secure.svg'
-import { QRCodeSvg } from '@/components/svg/qr-code.svg'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ArrowRight, Link, Shield, Zap } from 'lucide-react'
 
-async function getUrls(): Promise<Url[]> {
-  const response = await api('shorten')
+// async function getUrls(): Promise<Url[]> {
+//   const response = await api('shorten')
 
-  if (response.ok) {
-    const data = await response.json()
+//   if (response.ok) {
+//     const data = await response.json()
 
-    return data
-  }
+//     return data
+//   }
 
-  return []
-}
+//   return []
+// }
 
 export default async function _page() {
-  const urls = await getUrls()
+  // const urls = await getUrls()
 
   return (
-    <div className="mx-auto grid grid-cols-2 max-w-[1120px]">
-      <div className="pr-14 flex flex-col min-h-screen justify-between pb-5">
-        <header className="flex flex-col items-start gap-2.5 mt-20 mb-10">
-          <div className="flex flex-col items-start gap-2.5">
-            <Logo />
+    <div className="h-screen relative mx-auto flex items-center justify-center max-w-[800px]">
+      <div className="fixed inset-0 -z-10 h-full w-full bg-white dark:bg-[#1c1c1c] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:8px_10px]"></div>
+      <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[340px] w-[310px] rounded-full bg-cyan-600 opacity-20 blur-[100px]"></div>
+      <div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]"></div>
 
-            <p className="-tracking-wide text-[13px] text-zinc-600 font-medium">
-              Encurte seus URLs longos e compartilhe-os facilmente.
-            </p>
-          </div>
-        </header>
+      <div className="hidden sm:flex flex-col sticky top-40 w-[400px] pr-10">
+        <Logo />
 
-        <CreateShortUrlForm />
+        <div className="mt-10">
+          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+            <Link className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+            Curto
+          </p>
+          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+            Crie links pequenos e com maior aceitação.
+          </p>
+        </div>
 
-        <div className="flex flex-col mt-auto">
-          <div className="mt-auto grid grid-cols-2 gap-2.5 mb-2.5">
-            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
-              <div className="flex items-center gap-2.5">
-                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
-                  <LinkSvg />
-                </div>
-                <p className="text-sm font-medium">Curto</p>
-              </div>
-              <p className="text-xs text-zinc-600 mt-4">
-                Encurte links de qualquer tamanho com o Encurtador
-              </p>
-            </div>
+        <div className="mt-7">
+          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+            <Zap className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+            Rápido
+          </p>
+          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+            Entregamos em menos de 1.5 segundos.
+          </p>
+        </div>
 
-            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
-              <div className="flex items-center gap-2.5">
-                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
-                  <FreeSvg />
-                </div>
-                <p className="text-sm font-medium">Grátis</p>
-              </div>
-              <p className="text-xs text-zinc-600 mt-4">
-                Crie quantos links encurtados quiser e compartilhe
-              </p>
-            </div>
-
-            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
-              <div className="flex items-center gap-2.5">
-                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
-                  <SecureSvg />
-                </div>
-                <p className="text-sm font-medium">Seguro</p>
-              </div>
-              <p className="text-xs text-zinc-600 mt-4">
-                Usamos protocolo https com criptografia de dados nas URLs
-              </p>
-            </div>
-
-            <div className="bg-zinc-50 hover:scale-[1.02] cursor-not-allowed transition-all duration-200 p-5 rounded-[2px]">
-              <div className="flex items-center gap-2.5">
-                <div className="rounded flex items-center justify-center h-10 w-10 bg-white">
-                  <QRCodeSvg />
-                </div>
-                <p className="text-sm font-medium">QR Code</p>
-              </div>
-              <p className="text-xs text-zinc-600 mt-4">
-                Gere sua URL e disponibilize através de QRCode.
-              </p>
-            </div>
-          </div>
-
-          <hr className="my-10" />
-
-          <div className="flex items-center gap-2.5 mb-5">
-            <Avatar>
-              <AvatarImage src="https://github.com/andres-dos-santos.png" />
-              <AvatarFallback>AN</AvatarFallback>
-            </Avatar>
-
-            <p className="text-[13px]">Andres doSantos</p>
-          </div>
+        <div className="mt-7">
+          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+            <Shield className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+            Seguro
+          </p>
+          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+            Usamos HTTP's para proteger seu link.
+          </p>
         </div>
       </div>
 
-      <Urls urls={urls} />
+      <div className="relative flex flex-col w-[400px] items-center shadow-lg justify-center h-auto border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-[#1c1c1c]">
+        <h1 className="text-2xl font-semibold -tracking-widest">
+          Encurte aqui
+        </h1>
+
+        <p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
+          Digite o seu link no campo abaixo e encurte-o.
+        </p>
+
+        <form action="" className="relative flex flex-col">
+          <input
+            type="text"
+            className="h-10 rounded-md w-80 border bg-zinc-50 p-2 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 font-medium"
+          />
+
+          <button className="h-10 group rounded-md bg-cyan-500 transition-all duration-300 hover:bg-cyan-500/90 w-full mt-1.5 flex items-center justify-center outline-none">
+            <ArrowRight className="size-4 mr-2 text-white group-hover:translate-x-10 transition-all duration-500" />
+            <p className="group-hover:opacity-0 font-medium -tracking-wide transition-all duration-500 text-[13px] flex items-center text-white">
+              Faça isso!
+            </p>
+          </button>
+        </form>
+
+        <div className="h-20 -z-10 w-full rounded-b-2xl bg-zinc-100 dark:bg-zinc-800 absolute -bottom-14 flex items-end justify-center">
+          <p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
+            Ainda não tem conta?{' '}
+            <span className="text-blue-500 underline">Clique aqui</span>.
+          </p>
+        </div>
+      </div>
+
+      <footer className="fixed bottom-0 flex items-center justify-between mb-5 w-[800px] mx-auto">
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+          © 2024 Andres dos Santos
+        </p>
+
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+          Suporte • Privacidade • Termos
+        </p>
+      </footer>
     </div>
   )
 }
