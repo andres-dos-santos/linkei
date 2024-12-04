@@ -1,5 +1,8 @@
+import { Create } from '@/components/create'
 import { Logo } from '@/components/logo'
-import { ArrowRight, Link, Shield, Zap } from 'lucide-react'
+import { Profile } from '@/components/profile'
+import { Theme } from '@/components/theme'
+import { Link, Shield, Zap } from 'lucide-react'
 
 // async function getUrls(): Promise<Url[]> {
 //   const response = await api('shorten')
@@ -22,77 +25,76 @@ export default async function _page() {
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[340px] w-[310px] rounded-full bg-cyan-600 opacity-20 blur-[100px]"></div>
       <div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]"></div>
 
-      <div className="hidden sm:flex flex-col sticky top-40 w-[400px] pr-10">
+      <header className="fixed h-24 flex items-center justify-between top-0 left-0 right-0 mx-auto max-w-[800px]">
         <Logo />
 
-        <div className="mt-10">
-          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-            <Link className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-            Curto
+        <div className="flex items-center gap-5">
+          <p className="font-medium -tracking-wider text-[13px]">
+            Seu Histórico
           </p>
-          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-            Crie links pequenos e com maior aceitação.
-          </p>
+
+          <Theme />
         </div>
+      </header>
 
-        <div className="mt-7">
-          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-            <Zap className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-            Rápido
-          </p>
-          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-            Entregamos em menos de 1.5 segundos.
-          </p>
-        </div>
-
-        <div className="mt-7">
-          <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-            <Shield className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-            Seguro
-          </p>
-          <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-            Usamos HTTP's para proteger seu link.
-          </p>
-        </div>
-      </div>
-
-      <div className="relative flex flex-col w-[400px] items-center shadow-lg justify-center h-auto border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-[#1c1c1c]">
-        <h1 className="text-2xl font-semibold -tracking-widest">
-          Encurte aqui
-        </h1>
-
-        <p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
-          Digite o seu link no campo abaixo e encurte-o.
-        </p>
-
-        <form action="" className="relative flex flex-col">
-          <input
-            type="text"
-            className="h-10 rounded-md w-80 border bg-zinc-50 p-2 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 font-medium"
-          />
-
-          <button className="h-10 group rounded-md bg-cyan-500 transition-all duration-300 hover:bg-cyan-500/90 w-full mt-1.5 flex items-center justify-center outline-none">
-            <ArrowRight className="size-4 mr-2 text-white group-hover:translate-x-10 transition-all duration-500" />
-            <p className="group-hover:opacity-0 font-medium -tracking-wide transition-all duration-500 text-[13px] flex items-center text-white">
-              Faça isso!
+      <div className="flex items-center">
+        <div className="hidden sm:flex flex-col w-[400px] pr-10">
+          <div className="mt-10">
+            <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+              <Link className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+              Curto
             </p>
-          </button>
-        </form>
+            <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+              Crie links pequenos e com maior aceitação.
+            </p>
+          </div>
 
-        <div className="h-20 -z-10 w-full rounded-b-2xl bg-zinc-100 dark:bg-zinc-800 absolute -bottom-14 flex items-end justify-center">
-          <p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
-            Ainda não tem conta?{' '}
-            <span className="text-blue-500 underline">Clique aqui</span>.
-          </p>
+          <div className="mt-7">
+            <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+              <Zap className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+              Rápido
+            </p>
+            <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+              Entregamos em menos de 1.5 segundos.
+            </p>
+          </div>
+
+          <div className="mt-7">
+            <p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
+              <Shield className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
+              Seguro
+            </p>
+            <p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
+              Usamos HTTP's para proteger seu link.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-zinc-50 dark:bg-zinc-600/50 backdrop-blur-md p-2 relative flex flex-col items-center justify-between rounded-[20px]">
+          <div className="flex flex-col w-[400px] items-center shadow-lg justify-center border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-700/50">
+            <h1 className="text-lg font-semibold -tracking-widest">
+              Encurte aqui
+            </h1>
+
+            <p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
+              Digite o seu link no campo abaixo e encurte-o.
+            </p>
+
+            <Create />
+          </div>
+
+          <div className="w-full rounded-b-2xl flex items-end justify-center">
+            <Profile />
+          </div>
         </div>
       </div>
 
       <footer className="fixed bottom-0 flex items-center justify-between mb-5 w-[800px] mx-auto">
-        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
           © 2024 Andres dos Santos
         </p>
 
-        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
           Suporte • Privacidade • Termos
         </p>
       </footer>

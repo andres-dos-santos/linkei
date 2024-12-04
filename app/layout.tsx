@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/sonner'
+import { ClerkProvider } from '@clerk/nextjs'
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({
   variable: '--font-inter-sans',
@@ -20,10 +22,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+    <ClerkProvider>
+      <html lang="en">
+        <ThemeProvider attribute="class">
+          <body className={`${inter.variable} antialiased`}>{children}</body>
+        </ThemeProvider>
 
-      <Toaster />
-    </html>
+        <Toaster />
+      </html>
+    </ClerkProvider>
   )
 }

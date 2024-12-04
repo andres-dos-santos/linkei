@@ -4,21 +4,25 @@ import { api } from '@/lib/api'
 import { revalidatePath } from 'next/cache'
 
 export async function onCreateUrl(url: string) {
-  if (url) {
-    const response = await api('shorten', {
-      method: 'POST',
-      body: JSON.stringify({ url }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+  try {
+    if (url) {
+      const response = await api('shorten', {
+        method: 'POST',
+        body: JSON.stringify({ url }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-    if (response.ok) {
-      const data = await response.json()
+      if (response.ok) {
+        const data = await response.json()
 
-      revalidatePath('/')
+        revalidatePath('/')
 
-      return data
+        return data
+      }
     }
+  } catch (error) {
+    console.log(error)
   }
 }
