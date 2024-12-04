@@ -1,7 +1,8 @@
 import { Create } from '@/components/create'
 import { Logo } from '@/components/logo'
 import { Profile } from '@/components/profile'
-import { Link, Shield, Sun, Zap } from 'lucide-react'
+import { Theme } from '@/components/theme'
+import { Link, Shield, Zap } from 'lucide-react'
 
 // async function getUrls(): Promise<Url[]> {
 //   const response = await api('shorten')
@@ -32,7 +33,7 @@ export default async function _page() {
             Seu Histórico
           </p>
 
-          <Sun className="size-4" />
+          <Theme />
         </div>
       </header>
 
@@ -69,8 +70,8 @@ export default async function _page() {
           </div>
         </div>
 
-        <div className="bg-zinc-50 p-2 relative flex flex-col items-center justify-between rounded-[20px]">
-          <div className="flex flex-col w-[400px] items-center shadow-lg justify-center border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-[#1c1c1c]">
+        <div className="bg-zinc-50 dark:bg-zinc-600/50 backdrop-blur-md p-2 relative flex flex-col items-center justify-between rounded-[20px]">
+          <div className="flex flex-col w-[400px] items-center shadow-lg justify-center border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-700/50">
             <h1 className="text-lg font-semibold -tracking-widest">
               Encurte aqui
             </h1>
@@ -89,11 +90,11 @@ export default async function _page() {
       </div>
 
       <footer className="fixed bottom-0 flex items-center justify-between mb-5 w-[800px] mx-auto">
-        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
           © 2024 Andres dos Santos
         </p>
 
-        <p className="font-medium text-[13px] -tracking-wider text-zinc-500">
+        <p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
           Suporte • Privacidade • Termos
         </p>
       </footer>
