@@ -55,10 +55,13 @@ export default async function _page() {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                <SheetTitle>
+                  <span className="text-zinc-400 dark:text-zinc-600">Seu </span>
+                  histórico
+                </SheetTitle>
                 <SheetDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
+                  Salvamos os seus links encurtados, fique à vontade para
+                  relembrar deles, passe o mouse por cima para ver um preview.
                 </SheetDescription>
               </SheetHeader>
 
