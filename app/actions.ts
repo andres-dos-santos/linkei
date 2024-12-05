@@ -1,28 +1,18 @@
 'use server'
 
-import { api } from '@/lib/api'
-import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 
-export async function onCreateUrl(url: string) {
-  try {
-    if (url) {
-      const response = await api('shorten', {
-        method: 'POST',
-        body: JSON.stringify({ url }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+export async function setUser(userId: string) {
+  const store = await cookies()
 
-      if (response.ok) {
-        const data = await response.json()
+  store.set('userId', userId || '')
+}
 
-        revalidatePath('/')
+export async function getUser() {
+  const store = await cookies()
 
-        return data
-      }
-    }
-  } catch (error) {
-    console.log(error)
-  }
+  const user = store.get('userId')
+  console.log('user', user)
+
+  return user?.value
 }

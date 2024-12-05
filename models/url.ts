@@ -19,6 +19,6 @@ const UrlSchema = new mongoose.Schema({
   },
 })
 
-const Url = mongoose.model('Url', UrlSchema)
+const Url = mongoose.models.Url || mongoose.model('Url', UrlSchema)
 
 export { Url }
