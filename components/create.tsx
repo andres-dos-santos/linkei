@@ -34,7 +34,9 @@ export function Create() {
       })
 
       if (response.ok) {
-        toast('Seu link foi encurtado!')
+        const data = await response.json()
+
+        toast('Seu link foi encurtado!', data.shortUrl)
       } else {
         toast('Houve algum erro ao criar seu link.')
       }

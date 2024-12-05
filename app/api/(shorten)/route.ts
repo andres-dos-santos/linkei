@@ -17,11 +17,14 @@ export async function POST(request: Request) {
   const shortUrl = 'https://linkei/' + nanoid(5)
   const userId = await getUser()
 
-  const data = await Url.create({
-    originalUrl,
-    shortUrl,
-    userId,
-  })
+  if (userId) {
+    const data = await Url.create({
+      originalUrl,
+      shortUrl,
+      userId,
+    })
+    return NextResponse.json({ data })
+  }
 
-  return NextResponse.json({ data })
+  return NextResponse.json({ data: { shortUrl } })
 }

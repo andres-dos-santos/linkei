@@ -10,9 +10,9 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '@/components/ui/sheet'
 import { api } from '@/lib/api'
+import { HistoryTrigger } from '@/components/history-trigger'
 
 type Url = {
   _id: string
@@ -48,11 +48,7 @@ export default async function _page() {
 
         <div className="flex items-center gap-5">
           <Sheet>
-            <SheetTrigger>
-              <p className="font-medium -tracking-wider text-[13px]">
-                Seu histórico
-              </p>
-            </SheetTrigger>
+            <HistoryTrigger />
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>
