@@ -9,6 +9,13 @@ const UrlSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  faviconName: {
+    type: String,
+    required: true,
+  },
+  faviconLink: {
+    type: String,
+  },
   visits: {
     type: Number,
     default: 0,

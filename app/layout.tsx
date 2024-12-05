@@ -7,7 +7,7 @@ import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({
   variable: '--font-inter-sans',
-  weight: ['900', '400', '600', '500'],
+  weight: ['900', '400', '600', '500', '200'],
   subsets: ['latin'],
 })
 

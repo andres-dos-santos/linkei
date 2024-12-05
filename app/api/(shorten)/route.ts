@@ -19,14 +19,26 @@ export async function POST(request: Request) {
   const { url } = await request.json()
 
   const originalUrl = url
+
   const shortUrl = 'https://linkei/' + nanoid(5)
+
   const userId = await getUser()
+
+  const faviconName = shortUrl.replace('https://linkei/', '').slice(0, 2)
+
+  function faviconLink() {
+    const urlObj = new URL(originalUrl)
+
+    return `${urlObj.origin}/favicon.ico`
+  }
 
   if (userId) {
     const data = await Url.create({
       originalUrl,
       shortUrl,
       userId,
+      faviconLink: faviconLink(),
+      faviconName,
     })
     return NextResponse.json({ data })
   }

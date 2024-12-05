@@ -18,6 +18,8 @@ type Url = {
   _id: string
   originalUrl: string
   shortUrl: string
+  faviconLink: string
+  faviconName: string
   visits: number
   userId: string
 }
@@ -28,14 +30,14 @@ async function getUrls(): Promise<Url[]> {
   if (response.ok) {
     const data = await response.json()
 
-    return data
+    return data.urls
   }
 
   return []
 }
 
 export default async function _page() {
-  await getUrls()
+  const data = await getUrls()
 
   return (
     <div className="h-screen relative mx-auto flex items-center justify-center max-w-[800px]">
@@ -52,7 +54,8 @@ export default async function _page() {
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>
-                  <span className="text-zinc-400 dark:text-zinc-600">Seu </span>
+                  <span className="text-zinc-400 dark:text-zinc-600">Seu </span>{' '}
+                  <br />
                   histórico
                 </SheetTitle>
                 <SheetDescription>
@@ -61,9 +64,31 @@ export default async function _page() {
                 </SheetDescription>
               </SheetHeader>
 
-              {/* {urls.map((item) => (
-                <li key={item._id}>{item.shortUrl}</li>
-              ))} */}
+              <ul className="mt-5">
+                {data.map((item) => (
+                  <li
+                    key={item._id}
+                    className="flex items-center gap-2.5 p-2 rounded hover:bg-zinc-50/50 cursor-pointer"
+                  >
+                    <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-100 justify-center rounded">
+                      <p className="text-xs uppercase">
+                        {item.shortUrl
+                          .replace('https://linkei/', '')
+                          .slice(0, 2)}
+                      </p>
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="text-sm text-zinc-700">{item.shortUrl}</p>
+                      <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
+                        {item.originalUrl}
+                      </p>
+                      <p className="text-sm text-zinc-700 mt-1.5">
+                        {item.visits} visualizações
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </SheetContent>
           </Sheet>
 
