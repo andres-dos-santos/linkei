@@ -34,9 +34,11 @@ export function Create() {
       })
 
       if (response.ok) {
-        const data = await response.json()
+        const { data } = await response.json()
 
-        toast('Seu link foi encurtado!', data.shortUrl)
+        navigator.clipboard.writeText(data.originalUrl)
+
+        toast('✅ Link copiado', data.shortUrl)
       } else {
         toast('Houve algum erro ao criar seu link.')
       }

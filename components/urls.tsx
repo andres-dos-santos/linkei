@@ -1,8 +1,5 @@
 import { Url } from '@prisma/client'
 
-import { OpenUrl } from './open-url'
-import { ClipToClipboard } from './copy-to-clipboard'
-
 export function Urls({ urls }: { urls: Url[] }) {
   return (
     <ul className="px-10 min-h-screen border-l">
@@ -11,7 +8,7 @@ export function Urls({ urls }: { urls: Url[] }) {
         <p className="text-[13px]">{urls.length}</p>
       </li>
 
-      {urls.length > 0 ? (
+      {/* {urls.length > 0 ? (
         <>
           {urls.map((item) => (
             <li
@@ -35,7 +32,7 @@ export function Urls({ urls }: { urls: Url[] }) {
         <li className="flex mt-96 items-center justify-center">
           <p className="text-[13px] text-zinc-400">The list is empty.</p>
         </li>
-      )}
+      )} */}
     </ul>
   )
 }

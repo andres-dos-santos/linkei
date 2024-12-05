@@ -35,7 +35,7 @@ async function getUrls(): Promise<Url[]> {
 }
 
 export default async function _page() {
-  const urls = await getUrls()
+  await getUrls()
 
   return (
     <div className="h-screen relative mx-auto flex items-center justify-center max-w-[800px]">
@@ -61,9 +61,9 @@ export default async function _page() {
                 </SheetDescription>
               </SheetHeader>
 
-              {urls.map((item) => (
+              {/* {urls.map((item) => (
                 <li key={item._id}>{item.shortUrl}</li>
-              ))}
+              ))} */}
             </SheetContent>
           </Sheet>
 
