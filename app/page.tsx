@@ -4,20 +4,38 @@ import { Profile } from '@/components/profile'
 import { Theme } from '@/components/theme'
 import { Link, Shield, Zap } from 'lucide-react'
 
-// async function getUrls(): Promise<Url[]> {
-//   const response = await api('shorten')
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { api } from '@/lib/api'
 
-//   if (response.ok) {
-//     const data = await response.json()
+type Url = {
+  _id: string
+  originalUrl: string
+  shortUrl: string
+  visits: number
+  userId: string
+}
 
-//     return data
-//   }
+async function getUrls(): Promise<Url[]> {
+  const response = await api('')
 
-//   return []
-// }
+  if (response.ok) {
+    const data = await response.json()
+
+    return data
+  }
+
+  return []
+}
 
 export default async function _page() {
-  // const urls = await getUrls()
+  const urls = await getUrls()
 
   return (
     <div className="h-screen relative mx-auto flex items-center justify-center max-w-[800px]">
@@ -29,9 +47,29 @@ export default async function _page() {
         <Logo />
 
         <div className="flex items-center gap-5">
-          <p className="font-medium -tracking-wider text-[13px]">
-            Seu Histórico
-          </p>
+          <Sheet>
+            <SheetTrigger>
+              <p className="font-medium -tracking-wider text-[13px]">
+                Seu histórico
+              </p>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>
+                  <span className="text-zinc-400 dark:text-zinc-600">Seu </span>
+                  histórico
+                </SheetTitle>
+                <SheetDescription>
+                  Salvamos os seus links encurtados, fique à vontade para
+                  relembrar deles, passe o mouse por cima para ver um preview.
+                </SheetDescription>
+              </SheetHeader>
+
+              {urls.map((item) => (
+                <li key={item._id}>{item.shortUrl}</li>
+              ))}
+            </SheetContent>
+          </Sheet>
 
           <Theme />
         </div>

@@ -1,9 +1,19 @@
 'use client'
 
+import { setUser } from '@/app/actions'
 import { SignInButton, SignOutButton, useSession } from '@clerk/nextjs'
+import { useEffect } from 'react'
 
 export function Profile() {
   const { session, isSignedIn } = useSession()
+
+  useEffect(() => {
+    async function set() {
+      if (session?.user.id) await setUser(session.user.id)
+    }
+
+    set()
+  }, [session])
 
   return !isSignedIn ? (
     <SignInButton>

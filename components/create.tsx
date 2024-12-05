@@ -3,8 +3,6 @@
 import { ArrowRight, Loader } from 'lucide-react'
 import { toast } from 'sonner'
 
-import { onCreateUrl } from '@/app/actions'
-
 // import { Checkbox } from './ui/checkbox'
 // import {
 //   Dialog,
@@ -14,6 +12,7 @@ import { onCreateUrl } from '@/app/actions'
 //   DialogTitle,
 // } from '@/components/ui/dialog'
 import { useState } from 'react'
+import { api } from '@/lib/api'
 // import QRCode from 'react-qr-code'
 // import { Input, InputLabel } from './ui/input'
 
@@ -28,9 +27,13 @@ export function Create() {
     const qrCode = formData.get('qr-code')
 
     if (url) {
-      const data = await onCreateUrl(url.toString())
+      const response = await api('', {
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+        method: 'POST',
+      })
 
-      if (data) {
+      if (response.ok) {
         toast('Seu link foi encurtado!')
       } else {
         toast('Houve algum erro ao criar seu link.')
@@ -52,7 +55,7 @@ export function Create() {
         <input
           type="text"
           name="url"
-          className="h-10 rounded-md w-80 bg-zinc-50 dark:bg-zinc-600 p-2 border focus:ring-4 focus:ring-cyan-500/20 focus:border-cyan-500 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 font-medium"
+          className="h-10 rounded-md w-80 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-600 p-2 border focus:ring-4 focus:ring-cyan-500/20 dark:focus:border-cyan-600 focus:border-cyan-500 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 font-medium"
           placeholder="https://meulinkaqui.com"
         />
 
