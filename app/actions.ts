@@ -44,7 +44,7 @@ export async function setUrl(url: string) {
   const sql = neon(process.env.DATABASE_URL ?? '')
 
   const originalUrl = url
-  const shortUrl = 'https://linkei/' + nanoid(5)
+  const shortUrl = nanoid(5)
   const faviconName = shortUrl.replace('https://linkei/', '').slice(0, 2)
   function faviconLink() {
     const urlObj = new URL(originalUrl)
@@ -64,12 +64,8 @@ export async function setUrl(url: string) {
   return data
 }
 
-export async function addVisit(id: string) {
-  // const userId = await getUser()
-
+export async function addVisit(shortUrl: string) {
   const sql = neon(process.env.DATABASE_URL ?? '')
 
-  const data = await sql`update urls set visits = visits + 1 where id = ${id}`
-
-  return data
+  await sql`update urls set visits = visits + 1 where shorturl = ${shortUrl}`
 }

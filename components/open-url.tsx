@@ -9,22 +9,22 @@ type Props = {
   id: string
 }
 
-export function OpenUrl(props: Props) {
+export function OpenUrl({ originalurl, shorturl }: Props) {
   const { push } = useRouter()
 
   async function handleOpenUrl() {
-    await addVisit(props.id)
+    await addVisit(shorturl)
 
-    push(props.originalurl)
+    push(originalurl)
   }
 
   return (
     <button onClick={handleOpenUrl}>
-      <p className="text-sm text-zinc-700 group-hover:underline font-medium text-left">
-        {props.shorturl}
+      <p className="text-[13px] text-zinc-700 group-hover:underline font-medium text-left">
+        https://linkei/{shorturl}
       </p>
       <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
-        {props.originalurl}
+        {originalurl}
       </p>
     </button>
   )

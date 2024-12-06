@@ -14,6 +14,7 @@ import {
 import { HistoryTrigger } from '@/components/history-trigger'
 import { getData } from './actions'
 import { OpenUrl } from '@/components/open-url'
+import { CopyToClipboard } from '@/components/copy-to-clipboard'
 
 export default async function _page() {
   const data = await getData()
@@ -25,7 +26,7 @@ export default async function _page() {
       <div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]"></div>
 
       <div className="h-screen w-screen flex items-center justify-center sm:mx-auto sm:max-w-[800px]">
-        <header className="absolute h-24 flex w-full items-center justify-between px-10 top-0 gap-10 sm:mx-auto sm:max-w-[800px]">
+        <header className="absolute h-24 flex w-full items-center justify-between px-10 sm:px-0 top-0 gap-10 sm:mx-auto sm:max-w-[800px]">
           <Logo />
 
           <div className="flex items-center gap-5">
@@ -72,6 +73,8 @@ export default async function _page() {
                               <p className="text-[12px] font-medium -tracking-wider text-zinc-700">
                                 {item.visits} visualizações
                               </p>
+
+                              <CopyToClipboard originalUrl={item.originalurl} />
 
                               {/* <GenerateQrCode url={item.originalUrl} /> */}
                             </footer>

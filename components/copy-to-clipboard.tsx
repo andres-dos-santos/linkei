@@ -7,11 +7,11 @@ type Props = {
   originalUrl: string
 }
 
-export function ClipToClipboard({ originalUrl }: Props) {
+export function CopyToClipboard({ originalUrl }: Props) {
   async function handleCopyToClipboard() {
     await navigator.clipboard.writeText(originalUrl)
 
-    toast(originalUrl + 'is copied.')
+    toast('✅ Link copied!')
   }
 
   return (
