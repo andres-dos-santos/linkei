@@ -63,3 +63,13 @@ export async function setUrl(url: string) {
 
   return data
 }
+
+export async function addVisit(id: string) {
+  // const userId = await getUser()
+
+  const sql = neon(process.env.DATABASE_URL ?? '')
+
+  const data = await sql`update urls set visits = visits + 1 where id = ${id}`
+
+  return data
+}

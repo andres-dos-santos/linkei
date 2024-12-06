@@ -12,9 +12,8 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { HistoryTrigger } from '@/components/history-trigger'
-import Link from 'next/link'
-import { OpenUrl } from '@/components/open-url'
 import { getData } from './actions'
+import { OpenUrl } from '@/components/open-url'
 
 export default async function _page() {
   const data = await getData()
@@ -50,7 +49,7 @@ export default async function _page() {
                 <ul className="mt-5">
                   {data.map((item) => {
                     return (
-                      <OpenUrl key={item.id}>
+                      <li key={item.id}>
                         <div className="flex items-center gap-2.5 p-2 group rounded hover:bg-zinc-50/50">
                           <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-50 justify-center rounded">
                             {item.faviconlink ? (
@@ -63,14 +62,11 @@ export default async function _page() {
                           </div>
 
                           <div className="flex flex-col">
-                            <Link href={item.originalurl} target="__blank">
-                              <p className="text-sm text-zinc-700 group-hover:underline">
-                                {item.shorturl}
-                              </p>
-                              <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
-                                {item.originalurl}
-                              </p>
-                            </Link>
+                            <OpenUrl
+                              id={item.id}
+                              originalurl={item.originalurl}
+                              shorturl={item.shorturl}
+                            />
 
                             <footer className="mt-1.5 flex items-center gap-2.5">
                               <p className="text-[12px] font-medium -tracking-wider text-zinc-700">
@@ -81,7 +77,7 @@ export default async function _page() {
                             </footer>
                           </div>
                         </div>
-                      </OpenUrl>
+                      </li>
                     )
                   })}
                 </ul>

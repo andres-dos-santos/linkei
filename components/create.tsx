@@ -3,6 +3,7 @@
 import { ArrowRight, Loader } from 'lucide-react'
 import { useState } from 'react'
 import { setUrl } from '@/app/actions'
+import { toast } from 'sonner'
 
 export function Create() {
   const [loading, setLoading] = useState(false)
@@ -13,11 +14,11 @@ export function Create() {
     setLoading(true)
 
     if (url) {
-      await setUrl(url.toString())
+      await setUrl(url.toString()).then(() => {
+        navigator.clipboard.writeText(url.toString())
 
-      // revalidatePath('/')
-
-      navigator.clipboard.writeText(url.toString())
+        toast('✅ Link criado!')
+      })
     }
 
     setLoading(false)

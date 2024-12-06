@@ -22,14 +22,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <ThemeProvider attribute="class">
+    <html lang="en">
+      <ThemeProvider attribute="class">
+        <ClerkProvider>
           <body className={`${inter.variable} antialiased`}>{children}</body>
-        </ThemeProvider>
+        </ClerkProvider>
+      </ThemeProvider>
 
-        <Toaster />
-      </html>
-    </ClerkProvider>
+      <Toaster />
+    </html>
   )
 }
