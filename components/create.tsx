@@ -17,16 +17,14 @@ import { api } from '@/lib/api'
 // import { Input, InputLabel } from './ui/input'
 
 export function Create() {
-  const [, setUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
   async function submit(formData: FormData) {
-    setLoading(true)
-
     const url = formData.get('url')
-    const qrCode = formData.get('qr-code')
 
     if (url) {
+      setLoading(true)
+
       const response = await api('', {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
@@ -42,16 +40,14 @@ export function Create() {
       } else {
         toast('Houve algum erro ao criar seu link.')
       }
-
-      if (qrCode === 'on') {
-        setUrl(url.toString())
-      }
     } else {
       toast('Você passou a URL?')
     }
 
     setLoading(false)
   }
+
+  console.log('loading', loading)
 
   return (
     <>
