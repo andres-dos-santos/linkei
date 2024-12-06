@@ -11,35 +11,13 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import { api } from '@/lib/api'
 import { HistoryTrigger } from '@/components/history-trigger'
 import Link from 'next/link'
 import { OpenUrl } from '@/components/open-url'
-
-type Url = {
-  _id: string
-  originalUrl: string
-  shortUrl: string
-  faviconLink: string
-  faviconName: string
-  visits: number
-  userId: string
-}
-
-async function getUrls(): Promise<Url[]> {
-  const response = await api('')
-
-  if (response.ok) {
-    const data = await response.json()
-
-    return data.urls
-  }
-
-  return []
-}
+import { getData } from './actions'
 
 export default async function _page() {
-  const data = await getUrls()
+  const data = await getData()
 
   return (
     <div className="relative overflow-hidden">
@@ -47,8 +25,8 @@ export default async function _page() {
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[340px] w-[310px] rounded-full bg-cyan-600 opacity-20 blur-[100px]"></div>
       <div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]"></div>
 
-      <div className="h-screen w-screen sm:mx-auto flex items-center justify-center sm:max-w-[800px]">
-        <header className="absolute h-24 flex items-center justify-between px-10 top-0 gap-10 sm:mx-auto sm:max-w-[800px]">
+      <div className="h-screen w-screen flex items-center justify-center sm:mx-auto sm:max-w-[800px]">
+        <header className="absolute h-24 flex w-full items-center justify-between px-10 top-0 gap-10 sm:mx-auto sm:max-w-[800px]">
           <Logo />
 
           <div className="flex items-center gap-5">
@@ -70,36 +48,42 @@ export default async function _page() {
                 </SheetHeader>
 
                 <ul className="mt-5">
-                  {data.map((item) => (
-                    <OpenUrl key={item._id}>
-                      <Link
-                        className="flex items-center gap-2.5 p-2 rounded hover:bg-zinc-50/50 cursor-pointer"
-                        href={item.originalUrl}
-                        target="__blank"
-                      >
-                        <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-50 justify-center rounded">
-                          {item.faviconLink ? (
-                            <img src={item.faviconLink} alt="" />
-                          ) : (
-                            <p className="text-xs uppercase">
-                              {item.faviconName}
-                            </p>
-                          )}
+                  {data.map((item) => {
+                    return (
+                      <OpenUrl key={item.id}>
+                        <div className="flex items-center gap-2.5 p-2 group rounded hover:bg-zinc-50/50">
+                          <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-50 justify-center rounded">
+                            {item.faviconlink ? (
+                              <img src={item.faviconlink} alt="" />
+                            ) : (
+                              <p className="text-xs uppercase">
+                                {item.faviconname}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="flex flex-col">
+                            <Link href={item.originalurl} target="__blank">
+                              <p className="text-sm text-zinc-700 group-hover:underline">
+                                {item.shorturl}
+                              </p>
+                              <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
+                                {item.originalurl}
+                              </p>
+                            </Link>
+
+                            <footer className="mt-1.5 flex items-center gap-2.5">
+                              <p className="text-[12px] font-medium -tracking-wider text-zinc-700">
+                                {item.visits} visualizações
+                              </p>
+
+                              {/* <GenerateQrCode url={item.originalUrl} /> */}
+                            </footer>
+                          </div>
                         </div>
-                        <div className="flex flex-col">
-                          <p className="text-sm text-zinc-700">
-                            {item.shortUrl}
-                          </p>
-                          <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
-                            {item.originalUrl}
-                          </p>
-                          <p className="text-[13px] font-medium -tracking-wider text-zinc-700 mt-1.5">
-                            {item.visits} visualizações
-                          </p>
-                        </div>
-                      </Link>
-                    </OpenUrl>
-                  ))}
+                      </OpenUrl>
+                    )
+                  })}
                 </ul>
               </SheetContent>
             </Sheet>

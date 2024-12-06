@@ -1,20 +1,8 @@
 'use client'
 
 import { ArrowRight, Loader } from 'lucide-react'
-import { toast } from 'sonner'
-
-// import { Checkbox } from './ui/checkbox'
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogDescription,
-//   DialogHeader,
-//   DialogTitle,
-// } from '@/components/ui/dialog'
 import { useState } from 'react'
-import { api } from '@/lib/api'
-// import QRCode from 'react-qr-code'
-// import { Input, InputLabel } from './ui/input'
+import { setUrl } from '@/app/actions'
 
 export function Create() {
   const [loading, setLoading] = useState(false)
@@ -22,32 +10,18 @@ export function Create() {
   async function submit(formData: FormData) {
     const url = formData.get('url')
 
+    setLoading(true)
+
     if (url) {
-      setLoading(true)
+      await setUrl(url.toString())
 
-      const response = await api('', {
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
-        method: 'POST',
-      })
+      // revalidatePath('/')
 
-      if (response.ok) {
-        const { data } = await response.json()
-
-        navigator.clipboard.writeText(data.originalUrl)
-
-        toast('✅ Link copiado', data.shortUrl)
-      } else {
-        toast('Houve algum erro ao criar seu link.')
-      }
-    } else {
-      toast('Você passou a URL?')
+      navigator.clipboard.writeText(url.toString())
     }
 
     setLoading(false)
   }
-
-  console.log('loading', loading)
 
   return (
     <>
