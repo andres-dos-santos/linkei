@@ -1,11 +1,11 @@
 import { neon } from '@neondatabase/serverless'
-import { NextApiRequest } from 'next'
 import { NextResponse } from 'next/server'
 
-export async function GET(
-  _: NextApiRequest,
-  { params }: { params: Promise<{ 'short-url': string }> },
-) {
+export async function GET({
+  params,
+}: {
+  params: Promise<{ 'short-url': string }>
+}) {
   const { 'short-url': shortUrl } = await params
 
   const sql = neon(process.env.DATABASE_URL ?? '')
