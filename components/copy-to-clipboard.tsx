@@ -4,12 +4,12 @@ import { Copy } from 'lucide-react'
 import { toast } from 'sonner'
 
 type Props = {
-  originalUrl: string
+  shortUrl: string
 }
 
-export function CopyToClipboard({ originalUrl }: Props) {
+export function CopyToClipboard({ shortUrl }: Props) {
   async function handleCopyToClipboard() {
-    await navigator.clipboard.writeText(originalUrl)
+    await navigator.clipboard.writeText('https://lkei.vercel.app/' + shortUrl)
 
     toast('✅ Link copied!')
   }

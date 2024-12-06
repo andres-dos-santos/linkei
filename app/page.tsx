@@ -74,7 +74,7 @@ export default async function _page() {
                                 {item.visits} visualizações
                               </p>
 
-                              <CopyToClipboard originalUrl={item.originalurl} />
+                              <CopyToClipboard shortUrl={item.shorturl} />
 
                               {/* <GenerateQrCode url={item.originalUrl} /> */}
                             </footer>
