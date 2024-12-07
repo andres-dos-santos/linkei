@@ -1,7 +1,7 @@
 'use server'
 
 import { neon } from '@neondatabase/serverless'
-import { nanoid } from 'nanoid'
+import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 
 export async function setUser(userId: string) {
@@ -33,39 +33,18 @@ export async function getData(): Promise<Url[]> {
 
   const sql = neon(process.env.DATABASE_URL ?? '')
 
-  const data = await sql`select * from urls where userId = ${userId}`
+  const data =
+    await sql`select * from urls where userId = ${userId} order by created_at desc`
 
   return data as Url[]
-}
-
-export async function setUrl(url: string) {
-  const userId = await getUser()
-
-  const sql = neon(process.env.DATABASE_URL ?? '')
-
-  const originalUrl = url
-  const shortUrl = nanoid(5)
-  const faviconName = shortUrl.replace('https://linkei/', '').slice(0, 2)
-  function faviconLink() {
-    const urlObj = new URL(originalUrl)
-    return `${urlObj.origin}/favicon.ico`
-  }
-
-  const data = await sql`insert into urls 
-      (originalUrl,
-      shortUrl,
-      faviconName,
-      faviconLink,
-      visits,
-      userId) 
-      values 
-      (${originalUrl},${shortUrl},${faviconName},${faviconLink()},0,${userId})`
-
-  return data
 }
 
 export async function addVisit(shortUrl: string) {
   const sql = neon(process.env.DATABASE_URL ?? '')
 
   await sql`update urls set visits = visits + 1 where shorturl = ${shortUrl}`
+}
+
+export async function revalidate(tag: string) {
+  revalidateTag(tag)
 }

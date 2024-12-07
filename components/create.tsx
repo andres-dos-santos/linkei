@@ -1,8 +1,8 @@
 'use client'
 
+import { revalidate } from '@/app/actions'
 import { ArrowRight, Loader } from 'lucide-react'
 import { useState } from 'react'
-import { setUrl } from '@/app/actions'
 import { toast } from 'sonner'
 
 export function Create() {
@@ -14,11 +14,24 @@ export function Create() {
     setLoading(true)
 
     if (url) {
-      await setUrl(url.toString()).then(() => {
-        navigator.clipboard.writeText(url.toString())
+      if (process.env.NEXT_PUBLIC_BASE_URL) {
+        const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          next: { tags: ['create'] },
+          body: JSON.stringify({ url: url.toString() }),
+        })
 
-        toast('✅ Link criado!')
-      })
+        if (response.ok) {
+          await revalidate('create') // acho que tem que invalidar o outro
+
+          navigator.clipboard.writeText(url.toString())
+
+          toast('✅ Link criado!')
+        }
+      } else {
+        throw new Error('Could not find environment variable')
+      }
     }
 
     setLoading(false)
