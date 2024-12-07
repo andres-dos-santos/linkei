@@ -20,10 +20,10 @@ export function OpenUrl({ originalurl, shorturl }: Props) {
 
   return (
     <button onClick={handleOpenUrl}>
-      <p className="text-[13px] text-zinc-700 group-hover:underline font-medium text-left">
+      <p className="text-[13px] text-zinc-700 dark:text-white group-hover:underline font-medium text-left">
         https://linkei/{shorturl}
       </p>
-      <p className="text-[11px] text-zinc-500 line-clamp-1 truncate">
+      <p className="text-[11px] text-zinc-500 dark:text-zinc-300 line-clamp-1 truncate">
         {originalurl}
       </p>
     </button>

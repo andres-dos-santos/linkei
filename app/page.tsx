@@ -35,9 +35,7 @@ export default async function _page() {
               <SheetContent>
                 <SheetHeader>
                   <SheetTitle>
-                    <span className="text-zinc-400 dark:text-zinc-600">
-                      Seu{' '}
-                    </span>{' '}
+                    <span className="text-zinc-400 dark:text-white">Seu </span>{' '}
                     <br />
                     histórico
                   </SheetTitle>
@@ -51,8 +49,8 @@ export default async function _page() {
                   {data.map((item) => {
                     return (
                       <li key={item.id}>
-                        <div className="flex items-center gap-2.5 p-2 group rounded hover:bg-zinc-50/50">
-                          <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-50 justify-center rounded">
+                        <div className="flex items-center gap-2.5 p-2 group rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-700/50">
+                          <div className="h-20 w-20 min-w-20 min-h-20 max-w-20 max-h-20 flex items-center bg-zinc-50 dark:bg-zinc-600 justify-center rounded">
                             {item.faviconlink ? (
                               <img src={item.faviconlink} alt="" />
                             ) : (
@@ -70,7 +68,7 @@ export default async function _page() {
                             />
 
                             <footer className="mt-1.5 flex items-center gap-2.5">
-                              <p className="text-[12px] font-medium -tracking-wider text-zinc-700">
+                              <p className="text-[12px] font-medium -tracking-wider text-zinc-700 dark:text-zinc-300">
                                 {item.visits} visualizações
                               </p>
 

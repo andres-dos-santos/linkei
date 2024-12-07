@@ -18,7 +18,7 @@ export function CopyToClipboard({ shortUrl }: Props) {
 
   return (
     <button onClick={handleCopyToClipboard}>
-      <Copy className="size-4 text-zinc-500" />
+      <Copy className="size-4 text-zinc-500 dark:text-zinc-300" />
     </button>
   )
 }
