@@ -23,9 +23,13 @@ export function Create() {
         })
 
         if (response.ok) {
+          const { shortUrl } = await response.json()
+
           await revalidate('create') // acho que tem que invalidar o outro
 
-          navigator.clipboard.writeText(url.toString())
+          await navigator.clipboard.writeText(
+            'https://lkei.vercel.app/api/url/' + shortUrl,
+          )
 
           toast('✅ Link criado!')
         }
@@ -43,7 +47,7 @@ export function Create() {
         <input
           type="text"
           name="url"
-          className="h-10 rounded-md w-80 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-600 p-2 border focus:ring-4 focus:ring-cyan-500/20 dark:focus:border-cyan-600 focus:border-cyan-500 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 font-medium"
+          className="h-10 rounded-md w-80 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-600 p-2 border focus:ring-4 focus:ring-cyan-500/20 dark:focus:border-cyan-600 focus:border-cyan-500 bg-transparent outline-none text-[13px] -tracking-wider text-zinc-700 dark:text-white font-medium"
           placeholder="https://meulinkaqui.com"
         />
 

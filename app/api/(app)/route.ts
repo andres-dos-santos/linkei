@@ -29,5 +29,5 @@ export async function POST(req: NextRequest) {
       values
       (${originalUrl},${shortUrl},${faviconName},${faviconLink()},0,${userId}) returning id`
 
-  return NextResponse.json({ data })
+  return NextResponse.json({ data, shortUrl })
 }
