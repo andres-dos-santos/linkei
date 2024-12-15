@@ -9,9 +9,11 @@ type Props = {
 
 export function CopyToClipboard({ shortUrl }: Props) {
   async function handleCopyToClipboard() {
-    await navigator.clipboard.writeText(
-      'https://lkei.vercel.app/api/url/' + shortUrl,
-    )
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(
+        'https://lkei.vercel.app/api/url/' + shortUrl,
+      )
+    }
 
     toast('✅ Link copied!')
   }
