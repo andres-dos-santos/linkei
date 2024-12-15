@@ -73,8 +73,6 @@ export default async function _page() {
                               </p>
 
                               <CopyToClipboard shortUrl={item.shorturl} />
-
-                              {/* <GenerateQrCode url={item.originalUrl} /> */}
                             </footer>
                           </div>
                         </div>
