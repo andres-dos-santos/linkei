@@ -9,25 +9,29 @@ export async function POST(req: NextRequest) {
 
   const userId = await getUser()
 
-  const sql = neon(process.env.DATABASE_URL ?? '')
-
-  const originalUrl = url
   const shortUrl = nanoid(5)
-  const faviconName = shortUrl.replace('https://linkei/', '').slice(0, 2)
-  function faviconLink() {
-    const urlObj = new URL(originalUrl)
-    return `${urlObj.origin}/favicon.ico`
+
+  if (userId) {
+    const sql = neon(process.env.DATABASE_URL ?? '')
+    const originalUrl = url
+    const faviconName = shortUrl.replace('https://linkei/', '').slice(0, 2)
+    function faviconLink() {
+      const urlObj = new URL(originalUrl)
+      return `${urlObj.origin}/favicon.ico`
+    }
+  
+    const data = await sql`insert into urls
+        (originalUrl,
+        shortUrl,
+        faviconName,
+        faviconLink,
+        visits,
+        userId)
+        values
+        (${originalUrl},${shortUrl},${faviconName},${faviconLink()},0,${userId}) returning id`
+  
+    return NextResponse.json({ data, shortUrl })
   }
 
-  const data = await sql`insert into urls
-      (originalUrl,
-      shortUrl,
-      faviconName,
-      faviconLink,
-      visits,
-      userId)
-      values
-      (${originalUrl},${shortUrl},${faviconName},${faviconLink()},0,${userId}) returning id`
-
-  return NextResponse.json({ data, shortUrl })
+  return NextResponse.json({ shortUrl })
 }
