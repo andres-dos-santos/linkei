@@ -1,24 +1,24 @@
 import { neon } from '@neondatabase/serverless'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
-  _: NextRequest,
-  {
-    params,
-  }: {
-    params: Promise<{ 'short-url': string }>
-  },
+	_: NextRequest,
+	{
+		params,
+	}: {
+		params: Promise<{ 'short-url': string }>
+	}
 ) {
-  const { 'short-url': shortUrl } = await params
+	const { 'short-url': shortUrl } = await params
 
-  const sql = neon(process.env.DATABASE_URL ?? '')
+	const sql = neon(process.env.DATABASE_URL ?? '')
 
-  const data =
-    await sql`select originalurl from urls where shorturl = ${shortUrl}`
+	const data =
+		await sql`select originalurl from urls where shorturl = ${shortUrl}`
 
-  const { originalurl } = data[0]
+	const { originalurl } = data[0]
 
-  await sql`update urls set visits = visits + 1 where shorturl = ${shortUrl}`
+	await sql`update urls set visits = visits + 1 where shorturl = ${shortUrl}`
 
-  return NextResponse.redirect(originalurl)
+	return NextResponse.redirect(originalurl)
 }

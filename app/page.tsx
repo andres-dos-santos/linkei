@@ -27,13 +27,13 @@ export default async function _page() {
 				<h1>Google One Tap Example</h1>
 			</CustomGoogleOneTap>
 
-			<div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-[#1c1c1c] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:8px_10px]" />
+			{/* <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-[#1c1c1c] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:8px_10px]" />
 			<div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[340px] w-[310px] rounded-full bg-cyan-600 opacity-20 blur-[100px]" />
-			<div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]" />
+			<div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]" /> */}
 
-			<div className="h-screen w-screen flex items-center justify-center sm:mx-auto sm:max-w-[800px]">
-				<header className="absolute h-24 flex w-full items-center justify-between px-10 sm:px-0 top-0 gap-10 sm:mx-auto sm:max-w-[800px]">
-					<Logo />
+			<div className="h-screen w-screen sm:mx-auto sm:max-w-[700px]">
+				<header className="absolute h-24 flex w-full items-center justify-between px-10 sm:px-0 top-0 gap-10 sm:mx-auto sm:max-w-[700px]">
+					{/* <Logo /> */}
 
 					<div className="flex items-center gap-5">
 						<Sheet>
@@ -89,12 +89,12 @@ export default async function _page() {
 							</SheetContent>
 						</Sheet>
 
-						<Theme />
+						{/* <Theme /> */}
 					</div>
 				</header>
 
 				<div className="flex flex-col-reverse sm:flex-row items-center px-10">
-					<div className="grid w-full grid-cols-1 sm:w-[400px] mt-10 sm:mt-0 px-10">
+					{/* <div className="grid w-full grid-cols-1 sm:w-[400px] mt-10 sm:mt-0 px-10">
 						<div className="mt-10">
 							<p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
 								<LinkIcon className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
@@ -124,28 +124,37 @@ export default async function _page() {
 								Usamos HTTP's para proteger seu link.
 							</p>
 						</div>
-					</div>
+					</div> */}
 
-					<div className="border bg-zinc-50 dark:bg-zinc-600/50 backdrop-blur-md p-2 relative flex flex-col items-center justify-between rounded-[20px]">
-						<div className="flex flex-col sm:w-[400px] items-center shadow-lg justify-center border rounded-2xl p-10 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-700/50">
-							<h1 className="text-lg font-semibold -tracking-widest">
-								Encurte aqui
-							</h1>
+					<div className="w-full h-screen flex flex-col items-start mt-40">
+						{/* <h1 className="text-lg font-semibold -tracking-widest">
+							Encurte aqui
+						</h1>
 
-							<p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
-								Digite o seu link no campo abaixo e encurte-o.
-							</p>
+						<p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
+							Digite o seu link no campo abaixo e encurte-o.
+						</p> */}
 
-							<Create />
-						</div>
+						<Logo />
 
-						<div className="w-full rounded-b-2xl flex items-end justify-center">
+						<h1 className="font-bold text-5xl italic flex relative -tracking-wider">
+							<div className="bg-cyan-100 h-10 w-14 absolute bottom-0 left-3.5 -z-10" />
+							LINKEI
+						</h1>
+
+						<p className="text-zinc-500 text-sm block mt-5 mb-10">
+							Encurte seus links com segurança & velocidade.
+						</p>
+
+						<Create />
+
+						{/* <div className="w-full rounded-b-2xl flex items-end justify-center">
 							<Profile />
-						</div>
+						</div> */}
 					</div>
 				</div>
 
-				<footer className="absolute bottom-0 left-0 right-0 flex items-center justify-between mb-5 w-full px-10 sm:w-[800px] sm:mx-auto">
+				{/* <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-between mb-5 w-full px-10 sm:w-[800px] sm:mx-auto">
 					<p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
 						© 2024 Andres dos Santos
 					</p>
@@ -153,7 +162,7 @@ export default async function _page() {
 					<p className="font-medium text-[13px] -tracking-wider text-zinc-500 dark:text-zinc-300">
 						Suporte • Privacidade • Termos
 					</p>
-				</footer>
+				</footer> */}
 			</div>
 		</div>
 	)
