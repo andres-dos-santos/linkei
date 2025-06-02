@@ -70,3 +70,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .gradient {
+    background-image: to right, oklch(0.623 0.214 259.815) 0%, oklch(0.723 0.219 149.579) 100%;
+  }
+}

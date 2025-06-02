@@ -1,6 +1,13 @@
 'use client'
 
-import { ArrowRight, ArrowUpRight, Loader } from 'lucide-react'
+import {
+	ArrowRight,
+	ArrowUpRight,
+	Copy,
+	ExternalLink,
+	Link,
+	Loader,
+} from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -45,27 +52,31 @@ export function Create() {
 	return (
 		<form
 			action={submit}
-			className="relative flex flex-col items-center gap-2.5 w-full"
+			className="relative flex flex-col items-center gap-2.5 w-full mt-10"
 		>
-			<input
-				type="text"
-				name="url"
-				className="h-20 w-full dark:border-zinc-600 border-b -tracking-wider dark:focus:border-zinc-600 focus:border-zinc-500 bg-transparent outline-none text-2xl text-zinc-700 dark:text-white"
-				placeholder="https://www.pudim.com.br"
-			/>
+			<label
+				htmlFor=""
+				className="flex items-center gap-2.5 dark:border-yellow-600 border-b-2 dark:focus-within:border-yellow-600 focus-within:border-yellow-500 w-full"
+			>
+				<ExternalLink size={16} />
+				<input
+					type="text"
+					name="url"
+					className="bg-zinc-50 rounded-md my-2 px-2.5 h-10 w-full bg-transparent outline-none text-sm text-zinc-700 dark:text-white"
+					placeholder="https://www.pudim.com.br"
+				/>
+			</label>
 
 			<button
 				type="submit"
-				className="h-12 group hover:bg-zinc-900 w-[200px] transition-all duration-300 border-zinc-900 border-2 bg-white ml-auto mt-1.5 flex items-center justify-center outline-none"
+				className="h-10 group bg-yellow-400 hover:bg-yellow-500/80 hover:border-yellow-500 px-10 transition-all duration-300 border-yellow-400 border-2 ml-auto mt-1.5 flex items-center justify-center outline-none"
 			>
 				{loading ? (
 					<Loader className="size-4 text-white animate-spin" />
 				) : (
 					<>
-						<ArrowUpRight className="size-4 mr-0.5 group-hover:translate-x-10 transition-all duration-500" />
-						<p className="group-hover:opacity-0 font-medium -tracking-wide transition-all duration-500 text-[13px] flex items-center">
-							Encurtar
-						</p>
+						<Copy className="size-4 mr-1" />
+						<p className="-tracking-wide text-[13px]">Copiar link curto</p>
 					</>
 				)}
 			</button>

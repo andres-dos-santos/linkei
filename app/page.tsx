@@ -2,7 +2,7 @@ import { Create } from '@/components/create'
 import { Logo } from '@/components/logo'
 import { Profile } from '@/components/profile'
 import { Theme } from '@/components/theme'
-import { LinkIcon, Shield, Zap } from 'lucide-react'
+import { LinkIcon, Play, Shield, Zap } from 'lucide-react'
 
 import {
 	Sheet,
@@ -17,6 +17,7 @@ import { CopyToClipboard } from '@/components/copy-to-clipboard'
 import { CustomGoogleOneTap } from '@/components/google-one-tap'
 
 import { getData } from './actions'
+import { Description } from '@/components/description'
 
 export default async function _page() {
 	const data = await getData()
@@ -31,8 +32,8 @@ export default async function _page() {
 			<div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[340px] w-[310px] rounded-full bg-cyan-600 opacity-20 blur-[100px]" />
 			<div className="absolute left-0 right-0 -z-10 h-[560px] w-[560px] rounded-full bg-fuchsia-200 opacity-20 blur-[100px]" /> */}
 
-			<div className="h-screen w-screen sm:mx-auto sm:max-w-[700px]">
-				<header className="absolute h-24 flex w-full items-center justify-between px-10 sm:px-0 top-0 gap-10 sm:mx-auto sm:max-w-[700px]">
+			<div className="h-screen w-screen sm:mx-auto sm:max-w-[400px]">
+				<header className="absolute h-24 flex w-full items-center justify-between px-10 sm:px-0 top-0 gap-10 sm:mx-auto sm:max-w-[400px]">
 					{/* <Logo /> */}
 
 					<div className="flex items-center gap-5">
@@ -93,64 +94,13 @@ export default async function _page() {
 					</div>
 				</header>
 
-				<div className="flex flex-col-reverse sm:flex-row items-center px-10">
-					{/* <div className="grid w-full grid-cols-1 sm:w-[400px] mt-10 sm:mt-0 px-10">
-						<div className="mt-10">
-							<p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-								<LinkIcon className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-								Curto
-							</p>
-							<p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-								Crie links pequenos e com maior aceitação.
-							</p>
-						</div>
-
-						<div className="mt-7">
-							<p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-								<Zap className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-								Rápido
-							</p>
-							<p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-								Entregamos em menos de 1.5 segundos.
-							</p>
-						</div>
-
-						<div className="mt-7">
-							<p className="font-medium -tracking-wide text-sm flex items-center text-zinc-700 dark:text-white">
-								<Shield className="size-4 mr-2  text-zinc-500 dark:text-zinc-300" />{' '}
-								Seguro
-							</p>
-							<p className="font-medium text-[13px] text-zinc-500 dark:text-zinc-200 mt-2.5">
-								Usamos HTTP's para proteger seu link.
-							</p>
-						</div>
-					</div> */}
-
+				<div className="flex flex-col-reverse sm:flex-row items-center">
 					<div className="w-full h-screen flex flex-col items-start mt-40">
-						{/* <h1 className="text-lg font-semibold -tracking-widest">
-							Encurte aqui
-						</h1>
-
-						<p className="text-[13px] font-medium text-zinc-600 -tracking-wide mt-2.5 mb-5 dark:text-zinc-300">
-							Digite o seu link no campo abaixo e encurte-o.
-						</p> */}
-
 						<Logo />
 
-						<h1 className="font-bold text-5xl italic flex relative -tracking-wider">
-							<div className="bg-cyan-100 h-10 w-14 absolute bottom-0 left-3.5 -z-10" />
-							LINKEI
-						</h1>
-
-						<p className="text-zinc-500 text-sm block mt-5 mb-10">
-							Encurte seus links com segurança & velocidade.
-						</p>
+						<Description />
 
 						<Create />
-
-						{/* <div className="w-full rounded-b-2xl flex items-end justify-center">
-							<Profile />
-						</div> */}
 					</div>
 				</div>
 
