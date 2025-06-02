@@ -7,27 +7,27 @@ const originalurl = 'https://open.spotify.com/search/dream%20on'
 const shorturl = 'jZA8H'
 
 vi.mock('next/navigation', () => ({
-  useRouter: () => ({
-    push: vi.fn(),
-  }),
+	useRouter: () => ({
+		push: vi.fn(),
+	}),
 }))
 
 test.skip('must call the function after clicked', async () => {
-  const openUrlButton = screen.getByTestId('open-url-btn')
+	const openUrlButton = screen.getByTestId('open-url-btn')
 
-  await userEvent.click(openUrlButton)
+	await userEvent.click(openUrlButton)
 
-  await waitFor(() => {
-    expect(openUrlButton).toHaveBeenCalled()
-  })
+	await waitFor(() => {
+		expect(openUrlButton).toHaveBeenCalled()
+	})
 })
 
 test('should render correctly with the properties', async () => {
-  render(<OpenUrl shorturl={shorturl} originalurl={originalurl} id="" />)
+	render(<OpenUrl shorturl={shorturl} originalurl={originalurl} id="" />)
 
-  const originalUrlParagraph = screen.getByTestId('original-url-p')
-  const shortUrlParagraph = screen.getByTestId('short-url-p')
+	const originalUrlParagraph = screen.getByTestId('original-url-p')
+	const shortUrlParagraph = screen.getByTestId('short-url-p')
 
-  expect(originalUrlParagraph.textContent).toBe(originalurl)
-  expect(shortUrlParagraph.textContent).toBe('https://linkei/' + shorturl)
+	expect(originalUrlParagraph.textContent).toBe(originalurl)
+	expect(shortUrlParagraph.textContent).toBe(`https://linkei/${shorturl}`)
 })
