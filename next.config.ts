@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-	distDir: 'build',
+	/** distDir: 'build',
 	async headers() {
 		return [
 			{
@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
 				],
 			},
 		]
-	},
+	}, */
 }
 
 export default nextConfig
