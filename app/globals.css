@@ -68,6 +68,7 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    text-rendering: geometricPrecision;
   }
 }
 

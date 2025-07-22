@@ -6,5 +6,9 @@ const font = Poiret_One({
 })
 
 export function Logo() {
-	return <h1 className={`${font.className} text-3xl`}>L I N K E I</h1>
+	return (
+		<div className="col-span-10 row-span-2 flex items-center justify-start">
+			<h1 className={`${font.className} text-2xl`}>L I N K E I</h1>
+		</div>
+	)
 }

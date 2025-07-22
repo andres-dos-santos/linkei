@@ -4,15 +4,18 @@ import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 export function Theme() {
-  const { setTheme, theme } = useTheme()
+	const { setTheme, theme } = useTheme()
 
-  return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      {theme === 'dark' ? (
-        <Sun className="size-4" />
-      ) : (
-        <Moon className="size-4" />
-      )}
-    </button>
-  )
+	return (
+		<button
+			type="button"
+			onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+		>
+			{theme === 'dark' ? (
+				<Sun className="size-3.5" />
+			) : (
+				<Moon className="size-3.5" />
+			)}
+		</button>
+	)
 }

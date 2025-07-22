@@ -1,13 +1,19 @@
 import type { Metadata } from 'next'
-import { Jost, Oswald } from 'next/font/google'
-import './globals.css'
-import { Toaster } from '@/components/ui/sonner'
-import { ClerkProvider } from '@clerk/nextjs'
+import { Barlow, Geist } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
-const inter = Jost({
+import './globals.css'
+
+const geist = Geist({
 	weight: ['400', '600', '500', '300', '700'],
 	subsets: ['latin'],
+	variable: '--font-geist',
+})
+
+const barlow = Barlow({
+	weight: ['400', '600', '500', '300', '700'],
+	subsets: ['latin'],
+	variable: '--font-barlow',
 })
 
 export const metadata: Metadata = {
@@ -23,12 +29,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<ThemeProvider attribute="class">
-				<ClerkProvider>
-					<body className={`${inter.className} antialiased`}>{children}</body>
-				</ClerkProvider>
+				<body className={`${geist.variable} ${barlow.variable} antialiased`}>
+					{children}
+				</body>
 			</ThemeProvider>
-
-			<Toaster />
 		</html>
 	)
 }
