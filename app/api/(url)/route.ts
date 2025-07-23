@@ -8,7 +8,7 @@ import { model } from '@/services/models'
 
 const uid = new ShortID({ length: 8 })
 
-export async function POST(req: NextRequest) {
+export const POST = async (req: NextRequest) => {
 	const { original_url } = await req.json()
 
 	await DBConnect()
@@ -24,4 +24,10 @@ export async function POST(req: NextRequest) {
 	}
 
 	return NextResponse.json({ url: `https://lkei.site/${URLId}` })
+}
+
+export const OPTIONS = async (_: NextRequest) => {
+	return new NextResponse('', {
+		status: 200,
+	})
 }
