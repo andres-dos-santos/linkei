@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Barlow, Geist } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
+import { Toaster } from '@/components/ui/toaster'
+
 import './globals.css'
 
 const geist = Geist({
@@ -32,6 +34,8 @@ export default function RootLayout({
 				<body className={`${geist.variable} ${barlow.variable} antialiased`}>
 					{children}
 				</body>
+
+				<Toaster />
 			</ThemeProvider>
 		</html>
 	)

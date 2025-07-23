@@ -23,5 +23,5 @@ export async function POST(req: NextRequest) {
 		console.log('error', error)
 	}
 
-	return NextResponse.json({ url: `https://andres.com/${URLId}` })
+	return NextResponse.json({ url: `https://lkei.site/${URLId}` })
 }
