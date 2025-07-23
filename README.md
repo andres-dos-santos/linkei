@@ -9,7 +9,6 @@ Um simples e eficiente encurtador de URLs. Insira um link longo e receba uma URL
 
 ## 🖼 Demonstração
 
-| Imagem 1 | Imagem 2 |
 |---------|----------|
 | <img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/7b9f9416-8276-4b49-a6f0-977a6ce5c9c7" /> | <img width="424" height="864" alt="image" src="https://github.com/user-attachments/assets/5d741565-e18a-461d-97e7-4d65f61602ac" /> |
 
