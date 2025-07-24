@@ -69,14 +69,14 @@ export function Form() {
 			const data = await response.json()
 
 			if (data.url) {
-				console.log('data.url', data.url)
-
 				toast({
 					title: 'Criado com sucesso.',
 					description: 'Seu link curto está copiado no seu clipboard.',
 				})
 
 				await copyToClipboard(data.url)
+
+				setField('')
 			}
 		} catch (error) {
 			console.log(error)
