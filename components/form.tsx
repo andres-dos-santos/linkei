@@ -52,27 +52,34 @@ export function Form() {
 
 		setLoading(true)
 
-		const response = await fetch(baseUrl, {
-			method: 'POST',
-			body: JSON.stringify({ original_url: field }),
-		})
-
-		if (!response.ok) {
-			toast({
-				title: 'Ocorreu um erro.',
-				description: 'Parece que não foi possível encurtar seu link agora :/.',
-			})
-		}
-
-		const data = await response.json()
-
-		if (data.url) {
-			toast({
-				title: 'Criado com sucesso.',
-				description: 'Seu link curto está copiado no seu clipboard.',
+		try {
+			const response = await fetch(baseUrl, {
+				method: 'POST',
+				body: JSON.stringify({ original_url: field }),
 			})
 
-			await copyToClipboard(data.url)
+			if (!response.ok) {
+				toast({
+					title: 'Ocorreu um erro.',
+					description:
+						'Parece que não foi possível encurtar seu link agora :/.',
+				})
+			}
+
+			const data = await response.json()
+
+			if (data.url) {
+				console.log('data.url', data.url)
+
+				toast({
+					title: 'Criado com sucesso.',
+					description: 'Seu link curto está copiado no seu clipboard.',
+				})
+
+				await copyToClipboard(data.url)
+			}
+		} catch (error) {
+			console.log(error)
 		}
 
 		setLoading(false)

@@ -15,19 +15,9 @@ export const POST = async (req: NextRequest) => {
 
 	const URLId = uid.rnd()
 
-	try {
-		const url = new model.URL({ url_id: URLId, original_url })
+	const url = new model.URL({ url_id: URLId, original_url })
 
-		await url.save()
-	} catch (error) {
-		console.log('error', error)
-	}
+	await url.save()
 
 	return NextResponse.json({ url: `https://lkei.site/${URLId}` })
-}
-
-export const OPTIONS = async (_: NextRequest) => {
-	return new NextResponse('', {
-		status: 200,
-	})
 }
