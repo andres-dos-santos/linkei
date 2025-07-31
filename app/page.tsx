@@ -16,8 +16,8 @@ export default async function _page() {
 			<Background />
 
 			<Content>
-				<div className="absolute bottom-0 -left-20 w-96 h-96 bg-purple-50/50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob" />
-				<div className="absolute top-0 -right-20 w-96 h-96 bg-orange-50/50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob" />
+				{/* <div className="absolute bottom-0 -left-20 w-96 h-96 bg-purple-50/50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob" /> */}
+				{/* <div className="absolute top-0 -right-20 w-96 h-96 bg-orange-50/50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob" /> */}
 
 				<Header />
 
