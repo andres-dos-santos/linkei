@@ -19,5 +19,5 @@ export const POST = async (req: NextRequest) => {
 
 	await url.save()
 
-	return NextResponse.json({ url: `https://lkei.site/${URLId}` })
+	return NextResponse.json({ url: `https://lkei.site/api/${URLId}` })
 }
