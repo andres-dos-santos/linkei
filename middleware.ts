@@ -5,7 +5,7 @@ export function middleware() {
 
 	res.headers.append(
 		'Access-Control-Allow-Origin',
-		process.env.NODE_ENV === 'development' ? '*' : 'https://www.lkei.site'
+		process.env.NODE_ENV === 'development' ? '*' : 'https://lkei.site'
 	)
 
 	return res
