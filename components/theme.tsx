@@ -9,6 +9,7 @@ export function Theme() {
 	return (
 		<button
 			type="button"
+			data-testid="theme-button"
 			onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 		>
 			{theme === 'dark' ? (
