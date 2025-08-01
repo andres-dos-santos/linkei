@@ -9,7 +9,25 @@ on:
     branches:
       - main
 jobs:
+  Test-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+        with:
+          ref: test
+          path: ./test-branch
+
+      - name: Install dependencies (test branch)
+        run: npm install
+        working-directory: ./test
+
+      - name: Run tests (test branch)
+        run: npm test
+        working-directory: ./test
+
   Deploy-Production:
+    needs: Test-Production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
