@@ -44,3 +44,9 @@ MONGODB_URL_CONNECTION=<your-mongodb-url-connection>
 ```bash
 npm run dev
 ```
+
+## Novas ideias
+
+- criar uma extensão que faz a mesma coisa que o site
+- fazer um fetch para o mongo para verificar a quantidade de links curtos
+- tentar usar o aws com o lambda e o api gateway para remover o `/api` do link
