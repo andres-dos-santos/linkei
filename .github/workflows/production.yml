@@ -16,15 +16,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: test
-          path: ./test-branch
+          path: test
 
       - name: Install dependencies (test branch)
         run: npm install
-        working-directory: ./test
+        working-directory: test
 
       - name: Run tests (test branch)
         run: npm test
-        working-directory: ./test
+        working-directory: test
 
   Deploy-Production:
     needs: Test-Production
