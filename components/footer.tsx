@@ -1,7 +1,9 @@
-import { URL } from '@/services/models/url'
-
 async function getLength() {
-	const response = await fetch('https://lkei.site/api/length')
+	const response = await fetch(
+		process.env.NODE_ENV === 'production'
+			? 'https://lkei.site/api/length'
+			: 'http://localhost:3000/api/length'
+	)
 
 	const data = await response.json()
 
