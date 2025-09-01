@@ -5,7 +5,7 @@ import { Background } from '@/components/background'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
 
-export default async function _page() {
+export default function _page() {
 	return (
 		<Container>
 			<Background />
