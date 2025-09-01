@@ -85,42 +85,39 @@ export function Form() {
 		setLoading(false)
 	}
 
-	const buttonText = loading ? 'Quase lá...' : 'Encurtar'
-
 	return (
-		<div className="col-span-10 lg:col-span-6 row-span-8 lg:pl-10 xl:pl-20 flex flex-col items-start justify-start mt-2.5">
-			<form
-				onSubmit={onSubmit}
-				className="w-full gap-2.5 flex flex-col items-center relative"
-			>
-				<input
-					type="text"
-					data-error={hasError}
-					className="w-full border h-14 px-4 bg-inherit outline-none font-geist pb-0.5 text-sm rounded focus-within:ring-4 data-[error=true]:bg-red-50/20 dark:data-[error=true]:bg-red-700/20 data-[error=true]:border-red-500 dark:data-[error=true]:border-red-500 data-[error=true]:ring-red-200/50 dark:data-[error=true]:ring-red-700/50 focus-within:ring-zinc-200/70 focus-within:border-zinc-500 dark:focus-within:ring-zinc-500/70 dark:focus-within:border-zinc-400/50 dark:border-zinc-500"
-					placeholder="http://mercado.com.br/1234567890"
-					onChange={(e) => setField(e.target.value)}
-				/>
+		<form
+			action=""
+			className="mt-5 w-full px-10 sm:px-0 sm:w-[480px]"
+			onSubmit={onSubmit}
+		>
+			<input
+				type="text"
+				data-error={hasError}
+				onChange={(e) => setField(e.target.value)}
+				placeholder="Cole sua URL aqui"
+				className="data-[error=true]:border-red-500 data-[error=true]:ring-4 data-[error=true]:ring-red-500/20 transition-all duration-300 hover:border-orange-500 focus:ring-4 focus:ring-orange-200/50 focus:border-orange-500 h-12 sm:h-14 w-full text-sm outline-none px-2.5 sm:px-5 rounded-md border"
+			/>
 
-				<p
-					data-show={hasError}
-					className="data-[show=false]:hidden text-xs block text-left w-full my-0.5 text-red-500 font-jost"
-				>
-					{error}
-				</p>
+			<footer className="w-full flex items-center">
+				<div className="w-full">
+					<p className="text-xs font-medium text-zinc-400">
+						Todos os direitos reservados <br /> para Andres.com
+					</p>
+				</div>
 
 				<button
-					data-error={hasError}
-					className="data-[error=true]:disabled gap-2.5 disabled:cursor-not-allowed h-14 w-full bg-zinc-800 dark:bg-white hover:bg-zinc-900 dark:hover:bg-zinc-100 rounded flex items-center justify-center"
 					type="submit"
+					data-error={error}
+					disabled={!!error}
+					className="disabled:cursor-not-allowed h-12 sm:h-14 w-1/2 rounded-md flex items-center justify-center mt-2.5 bg-orange-500 hover:bg-orange-600 transition-all duration-300"
 				>
 					{loading && (
 						<LoaderCircle className="animate-spin text-background size-4" />
 					)}
-					<p className="text-white dark:text-zinc-900 font-barlow font-medium text-sm">
-						{buttonText}
-					</p>
+					<p className="font-bold text-sm text-white">ENCURTAR</p>
 				</button>
-			</form>
-		</div>
+			</footer>
+		</form>
 	)
 }

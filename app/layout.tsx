@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
-import { Barlow, Geist } from 'next/font/google'
+import { Barlow, Jost } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import { Toaster } from '@/components/ui/toaster'
 
 import './globals.css'
 
-const geist = Geist({
+const geist = Jost({
 	weight: ['400', '600', '500', '300', '700'],
 	subsets: ['latin'],
-	variable: '--font-geist',
+	variable: '--font-sans',
 })
 
 const barlow = Barlow({

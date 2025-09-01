@@ -1,19 +1,36 @@
-import { Logo } from '@/components/logo'
+import Image from 'next/image'
 
-import { Description } from '@/components/description'
 import { Form } from '@/components/form'
-import { Content } from '@/components/content'
-import { Features } from '@/components/features'
-import { Title } from '@/components/title'
 import { Background } from '@/components/background'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
-import { Header } from '@/components/header'
 
 export default async function _page() {
 	return (
 		<Container>
 			<Background />
+			<header className="flex flex-col items-center gap-2.5">
+				<div className="flex items-center gap-2.5">
+					<Image
+						src="/logo.png"
+						alt=""
+						width={500}
+						height={500}
+						className="w-20 h-20 -rotate-45"
+					/>
+					<h1 className="font-barlow text-4xl -tracking-wide">Linkei</h1>
+				</div>
+
+				<p className="text-sm text-zinc-600 text-balance text-center">
+					Transforme links longos em URLs curtas, rápidas e <br /> fáceis de
+					compartilhar.
+				</p>
+			</header>
+
+			<Form />
+
+			<Footer />
+			{/* <Background />
 
 			<Content>
 				<Header />
@@ -33,7 +50,7 @@ export default async function _page() {
 				</div>
 			</Content>
 
-			<Footer />
+			<Footer /> */}
 		</Container>
 	)
 }

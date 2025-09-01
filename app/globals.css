@@ -4,6 +4,7 @@
 
 body {
   text-rendering: geometricPrecision;
+  font-family: var(--font-sans);
 }
 
 @layer base {
