@@ -5,13 +5,20 @@ async function getLength() {
 			: 'http://localhost:3000/api/length'
 	)
 
-	const data = await response.json()
+	if (response.ok) {
+		const data = await response.json()
 
-	return data.length
+		return data.length
+	}
+
+	console.log(JSON.stringify(response, null, 2))
+
+	return 0
 }
 
 export async function Footer() {
 	const length = await getLength()
+	console.log(length)
 
 	return (
 		<footer className="flex items-center absolute bottom-8 gap-1.5">
