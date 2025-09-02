@@ -7,12 +7,6 @@ Um simples e eficiente encurtador de URLs. Insira um link longo e receba uma URL
 - Encurta URLs longas com um único clique
 - Redirecionamento seguro
 
-## Demonstração
-
-| Desktop | Mobile |
-|---------|----------|
-| <img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/7b9f9416-8276-4b49-a6f0-977a6ce5c9c7" /> | <img width="424" height="864" alt="image" src="https://github.com/user-attachments/assets/5d741565-e18a-461d-97e7-4d65f61602ac" /> |
-
 ## Tecnologias Utilizadas
 
 - [TypeScript](https://www.typescriptlang.org/)
@@ -33,10 +27,11 @@ cd linkei
 npm install
 ```
 
-3. Configure a sua variável ambiente
+3. Configure as suas variáveis de ambiente, sua tabela do Supabase precisa ter `{ url_id e original_url }`
 
 ```bash
-MONGODB_URL_CONNECTION=<your-mongodb-url-connection>
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
 4. Rode o projeto
@@ -47,6 +42,6 @@ npm run dev
 
 ## Novas ideias
 
-- criar uma extensão que faz a mesma coisa que o site
-- fazer um fetch para o mongo para verificar a quantidade de links curtos
-- tentar usar o aws com o lambda e o api gateway para remover o `/api` do link
+- Criar uma extensão que faz a mesma coisa que o site
+- ~~Adicionar a quantidade de URLs curtas~~
+- Tentar usar o AWS com o Lambda e o API Gateway para remover o `/api` do link
