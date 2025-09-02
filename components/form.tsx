@@ -1,7 +1,7 @@
 'use client'
 
 import { z } from 'zod'
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useState, type ClipboardEvent, type FormEvent } from 'react'
 import { baseUrl } from '@/constants/base-url'
 import { useToast } from '@/hooks/use-toast'
 import { LoaderCircle } from 'lucide-react'
@@ -85,6 +85,12 @@ export function Form() {
 		setLoading(false)
 	}
 
+	function handlePaste(event: ClipboardEvent<HTMLInputElement>) {
+		const pastedText = event.clipboardData.getData('text/plain')
+
+		setField(pastedText)
+	}
+
 	return (
 		<form
 			action=""
@@ -95,6 +101,7 @@ export function Form() {
 				type="text"
 				data-error={hasError}
 				onChange={(e) => setField(e.target.value)}
+				onPaste={handlePaste}
 				placeholder="Cole sua URL aqui"
 				className="data-[error=true]:border-red-500 data-[error=true]:ring-4 data-[error=true]:ring-red-500/20 transition-all duration-300 hover:border-orange-500 focus:ring-4 focus:ring-orange-200/50 focus:border-orange-500 h-12 sm:h-14 w-full text-sm outline-none px-2.5 sm:px-5 rounded-md border"
 			/>
@@ -112,10 +119,11 @@ export function Form() {
 					disabled={!!error}
 					className="disabled:cursor-not-allowed h-12 sm:h-14 w-1/2 rounded-md flex items-center justify-center mt-2.5 bg-orange-500 hover:bg-orange-600 transition-all duration-300"
 				>
-					{loading && (
+					{loading ? (
 						<LoaderCircle className="animate-spin text-background size-4" />
+					) : (
+						<p className="font-bold text-sm text-white">ENCURTAR</p>
 					)}
-					<p className="font-bold text-sm text-white">ENCURTAR</p>
 				</button>
 			</footer>
 		</form>
