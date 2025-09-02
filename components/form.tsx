@@ -2,9 +2,12 @@
 
 import { z } from 'zod'
 import { useEffect, useState, type ClipboardEvent, type FormEvent } from 'react'
-import { baseUrl } from '@/constants/base-url'
-import { useToast } from '@/hooks/use-toast'
 import { LoaderCircle } from 'lucide-react'
+
+import { baseUrl } from '@/constants/base-url'
+
+import { useToast } from '@/hooks/use-toast'
+
 import { copyToClipboard } from '@/lib/copy-to-clipboard'
 
 const LinkSchema = z.object({
@@ -53,7 +56,7 @@ export function Form() {
 		setLoading(true)
 
 		try {
-			const response = await fetch(baseUrl, {
+			const response = await fetch(`${baseUrl}/create-short-url`, {
 				method: 'POST',
 				body: JSON.stringify({ original_url: field }),
 			})

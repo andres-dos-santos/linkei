@@ -30,27 +30,6 @@ export default function _page() {
 			<Form />
 
 			<Footer />
-			{/* <Background />
-
-			<Content>
-				<Header />
-
-				<div className="grid grid-cols-10 grid-rows-10 mx-auto sm:w-[70%] lg:w-[80%] xl:w-[50%] gap-10 h-full relative">
-					<Logo />
-
-					<div className="col-span-10 lg:col-span-4 row-span-8 relative flex flex-col items-start justify-start">
-						<Title />
-
-						<Description />
-
-						<Features />
-					</div>
-
-					<Form />
-				</div>
-			</Content>
-
-			<Footer /> */}
 		</Container>
 	)
 }

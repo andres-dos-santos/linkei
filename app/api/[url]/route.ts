@@ -1,4 +1,4 @@
-import { supabase } from '@/services/supabase/server'
+import { createClient } from '@/services/supabase/server'
 import { type NextRequest, NextResponse } from 'next/server'
 
 interface Get {
@@ -7,6 +7,8 @@ interface Get {
 
 export const GET = async (_: NextRequest, { params }: Get) => {
 	const { url: url_id } = await params
+
+	const supabase = await createClient()
 
 	const { data } = await supabase.from('urls').select('*').eq('url_id', url_id)
 
